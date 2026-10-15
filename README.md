@@ -6,10 +6,10 @@ A minimal, interactive command reference for [OpenRig](https://github.com/mvschw
 
 ## What's included
 
-- 150 command examples in 14 categories.
+- 151 command examples in 14 categories.
 - Search and filters for read, change, stop, delete and agent-terminal commands.
 - Copy buttons and editable examples for rig names, seats, spec paths and models.
-- Eight workflows: first launch, assign a task, continue after a limit, resume work, recover a missing session, reload YAML, change a model and upgrade.
+- Nine workflows: first launch, assign a task, continue after a limit, resume work, start fresh sessions, recover a missing session, reload YAML, change a model and upgrade.
 - Workflows above a scrollable command browser; light/dark mode with a remembered preference.
 - Links to the upstream documentation and command source.
 
@@ -26,6 +26,40 @@ python3 -m http.server 8000
 Then open http://localhost:8000.
 
 The command reference works offline. Source links require an internet connection. Commands are copied as text; the page does not execute them.
+
+## Start with fresh sessions
+
+Plain `rig up <rig>` resumes saved conversations. To start new conversations for an existing team, pass its logical seat IDs to `--fresh`.
+
+```sh
+# Find the logical seat IDs before stopping:
+rig ps --nodes --rig my-project --full
+
+# After agents save active work; skip if already stopped:
+rig down my-project
+
+# Example IDs: replace these with every seat in your rig.
+rig up my-project --existing \
+  --fresh dev.owner dev.backend dev.check dev.frontend \
+  --yes
+
+rig ps --nodes --rig my-project --full
+```
+
+Use logical IDs in `pod.member` form, not session addresses or UUIDs:
+
+| Session address | Logical seat ID for `--fresh` |
+| --- | --- |
+| `dev-owner@my-project` | `dev.owner` |
+| `dev-backend@my-project` | `dev.backend` |
+| `dev-check@my-project` | `dev.check` |
+| `dev-frontend@my-project` | `dev.frontend` |
+
+Confirm IDs in the node details, restore output or your YAML's pod and member IDs. Rig and snapshot UUIDs from `rig down` are not seat IDs.
+
+List **every seat** after `--fresh` to start the whole team fresh. Naming one seat starts that seat fresh; unlisted seats follow normal restoration. `--existing` reuses saved rig configuration. Fresh priming keeps durable tasks, files and configured context while starting a new native conversation. For a blank occupant on one seat, use the separate `rig seat launch <seat> --fresh` operation.
+
+See the **Fresh sessions** workflow on the website and [upstream launch source](https://github.com/mvschwarz/openrig/blob/3001cc436656c435e54425443e708e3e2d8c7d68/packages/cli/src/commands/up.ts).
 
 ## GitHub Pages
 
