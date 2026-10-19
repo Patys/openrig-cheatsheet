@@ -6,12 +6,19 @@ Targets **OpenRig 0.6.11**, release commit [`379f0a0d`](https://github.com/mvsch
 
 ## Everyday workflows
 
-Set the rig name, target seat, YAML path and model under **Customize examples**, then choose a workflow:
+Set the rig name, target seat, YAML path and model under **Customize examples**, then choose a workflow. The Start here guide explains seats, leads, context and when to use `send`, `queue`, `ask` or `context`. It adapts the practical ideas from [Mike Schwarz’s OpenRig video](https://www.youtube.com/watch?v=CYRJDTcTKhQ).
+
+Available workflows:
 
 | Workflow | Use it to |
 | --- | --- |
+| Guided setup | Install the rigs skill and let your current agent guide setup. |
 | First launch | Validate and launch a team from YAML. |
+| Install a bundle | Inspect and install Workshop or another published team. |
+| Project context | Orient the agent in existing project systems before implementation. |
 | Assign a task | Create durable work and follow its owner through review. |
+| Ask an expert | Search past decisions or explicitly wake retained agent context. |
+| Share a team | Package the spec and declared resources for reuse. |
 | After a limit | Inspect quota and continue the existing task after reset. |
 | Resume work | Restore a saved team and inspect each seat. |
 | Fresh sessions | Start new conversations after saving active work. |
@@ -21,7 +28,9 @@ Set the rig name, target seat, YAML path and model under **Customize examples**,
 | Change model | Save a model selection for the next managed launch. |
 | Upgrade | Install 0.6.11, restart the daemon and resume the team. |
 
-The command browser has 161 examples in 14 categories, with search, operation filters, copy buttons and source links. Commands are copied as text; the page does not execute them.
+`rig ask` searches retained history. `rig ask --wake` executes a one-shot agent and uses runtime quota; check its account of the past against current source documents. The video is a conceptual guide; command syntax remains checked against 0.6.11.
+
+The command browser has 178 examples in 14 categories, with search, operation filters, copy buttons and source links. Commands are copied as text; the page does not execute them.
 
 ## Quick commands
 
@@ -62,3 +71,5 @@ GitHub Pages serves `main` from `/ (root)`. Keep `.nojekyll`; pushes publish aut
 - [CLI source at the release commit](https://github.com/mvschwarz/openrig/tree/379f0a0d106e65164c615818927267c2082ebcb4/packages/cli/src/commands)
 - [Getting started](https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/getting-started.md)
 - [Rig specification](https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/rig-spec.md)
+
+The [Workshop listing](https://openrig.dev/rigs/workshop) supplies the current pinned team source and runtime choices. It declares broad access and non-interruptive launches; inspect the declared behavior before installing.

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>OpenRig Cheatsheet</title>
-<meta name="description" content="A practical OpenRig CLI reference. 161 examples, 14 categories and ten common workflows. Verified against OpenRig 0.6.11.">
+<meta name="description" content="A practical OpenRig CLI reference. 178 examples, 14 categories and fifteen common workflows. Verified against OpenRig 0.6.11.">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%231b2421'/%3E%3Cpath d='M8 10l6 6-6 6m10 0h7' fill='none' stroke='white' stroke-width='2.5'/%3E%3C/svg%3E">
 <script>
@@ -23,23 +23,48 @@
 @media(max-width:980px){.wrap{padding:0 25px}.layout{grid-template-columns:185px minmax(0,1fr)}.settings-grid{grid-template-columns:1fr 1fr}.workflow-panel{grid-template-columns:1fr 1.4fr;gap:25px}}
 @media(max-width:700px){.wrap{padding:0 18px}.topnav{height:auto;min-height:61px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px;gap:10px 13px}.navlinks{width:100%;gap:12px;font-size:12px;justify-content:space-between;flex-wrap:wrap}.navlinks a:last-of-type{display:none}.button{font-size:12px}.intro{padding:32px 0 24px}.intro h1{font-size:33px;letter-spacing:-1.2px}.intro p{font-size:14px}.intro .meta{font-size:11px;margin-top:12px}.settings summary{font-size:13px}.settings summary span{display:none}.settings-grid{gap:12px}.layout{display:block;height:auto}.sidebar{overflow:visible;padding:12px 12px 0;border-right:0;border-bottom:1px solid var(--line)}.command-pane{height:clamp(420px,72vh,700px)}#command-list{padding:16px 14px}.command-reference{padding-bottom:28px}.command-reference h2{font-size:21px}.command-reference>.wrap>p{font-size:13px}.sidebar-label,.sidebar-note{display:none}.category-nav{flex-direction:row;gap:5px;overflow-x:auto;padding:2px 0 10px}.category{width:auto;white-space:nowrap;border:1px solid var(--line);font-size:12px;padding:6px 9px}.category.active{border-color:var(--control-border)}.category .count{display:none}.toolbar{padding:14px}.filters{gap:12px 15px}.results{width:100%;margin:2px 0 0;font-size:11px}.group{margin-bottom:30px}.group h2{font-size:18px}.command pre{font-size:12px}.command{gap:8px;padding:10px}.copy{padding-left:2px;font-size:11px;min-width:36px}.entry-description{font-size:12px}.entry h3{font-size:13px}.workflows{padding:28px 0}.tabs{gap:15px}.tab{font-size:12px}.workflow-panel{grid-template-columns:1fr;gap:20px}.workflow-info p{font-size:13px}.source-grid{grid-template-columns:1fr;gap:18px}.source-links{gap:11px}.footer{font-size:11px}.footer .wrap{gap:7px}.workflows h2,.sources h2{font-size:21px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-@media print{:root,:root[data-theme="dark"]{color-scheme:light;--bg:#ffffff;--ink:#202824;--muted:#65716b;--subtle:#647269;--line:#e2e7e3;--soft:#f6f8f6;--accent:#27614c;--control-border:#cbd3cd;--sidebar-bg:#fcfdfc;--active-bg:#edf4ef;--selection:#dceade;--code-ink:#273b30;--warning:#946027;--danger:#ae4857;--agent:#71649b;--invalid:#b64755;}.topbar,.intro,.layout{display:block;height:auto;overflow:visible;border:0}.command-pane{display:block;height:auto}#command-list{overflow:visible;padding:0}.command-reference{padding:0}.command-reference>.wrap>h2,.command-reference>.wrap>p{display:none}.wrap{max-width:none;padding:0}.group h2{font-size:16px}.entry{break-inside:avoid;padding:8px 0}.entry-description{font-size:11px}.command pre{font-size:10px}.command{background:#f5f5f5}.group-head{break-after:avoid}}
+.basics{padding:0 0 20px}.basics h2{font-size:21px;letter-spacing:-.5px;margin:0 0 8px;font-weight:620}.basics>p{font-size:14px;color:var(--muted);margin:0 0 16px;max-width:820px}.concept-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:20px 0}.concept-grid dt{font-size:14px;font-weight:600;margin-bottom:5px}.concept-grid dd{margin:0;font-size:13px;color:var(--muted)}.basics code{font:12px var(--mono);overflow-wrap:anywhere}.guide{border:1px solid var(--line);border-radius:5px;margin:0 0 14px}.guide>summary{cursor:pointer;font-size:14px;padding:12px 15px}.guide-body{padding:0 16px 8px;font-size:13px;color:var(--muted)}.guide-body h3{font-size:14px;color:var(--ink);margin:20px 0 6px}.guide-body p{margin:0 0 12px;max-width:850px}.guide-table{overflow-x:auto}.guide table{border-collapse:collapse;text-align:left;width:100%;min-width:540px}.guide caption{text-align:left;padding:8px 0 12px;font-weight:600}.guide th,.guide td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}.guide th{color:var(--ink);font-weight:600}.guide td:nth-child(2){min-width:190px}.basics .video-link{font-size:12px;margin-bottom:0}.video-link a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.group-hint{font-size:13px;color:var(--muted);margin:0 0 14px}.group-head{margin-bottom:5px}
+@media(max-width:700px){.concept-grid{grid-template-columns:1fr;gap:14px;margin:16px 0}.basics>p{font-size:13px}.guide>summary{font-size:13px}.guide-body{padding:0 12px 8px}.guide table{min-width:0}.guide thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.guide tr{display:block;padding:10px 0;border-bottom:1px solid var(--line)}.guide td{display:block;border:0;padding:3px 0}.guide td:first-child{font-weight:600;color:var(--ink)}.guide td:nth-child(2){min-width:0}}
+@media print{:root,:root[data-theme="dark"]{color-scheme:light;--bg:#fff;--ink:#202824;--muted:#65716b;--subtle:#647269;--line:#e2e7e3;--soft:#f6f8f6;--code-ink:#273b30}.topbar,.intro,.basics,.settings,.sidebar,.toolbar,.workflows,.sources,.footer,.toast,.copy,.entry-note{display:none!important}.layout{display:block;height:auto;overflow:visible;border:0}.command-pane{display:block;height:auto}#command-list{overflow:visible;padding:0}.command-reference{padding:0}.command-reference>.wrap>h2,.command-reference>.wrap>p{display:none}.wrap{max-width:none;padding:0}.group h2{font-size:16px}.entry{break-inside:avoid;padding:8px 0}.entry-description,.group-hint{font-size:11px}.command pre{font-size:10px}.command{background:#f5f5f5}.group-head{break-after:avoid}}
 </style>
 </head>
 <body>
-<header class="topbar"><div class="wrap topnav"><a class="wordmark" href="#">OpenRig</a><span class="version">v0.6.11</span><nav class="navlinks" aria-label="Page navigation"><a href="#workflows">Workflows</a><a href="#commands">Commands</a><a href="#sources">Sources</a><button class="button" id="download">Download HTML</button><button class="button theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false"><svg class="moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg><svg class="sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span class="theme-label" id="theme-label">Dark mode</span></button></nav></div></header>
+<header class="topbar"><div class="wrap topnav"><a class="wordmark" href="#">OpenRig</a><span class="version">v0.6.11</span><nav class="navlinks" aria-label="Page navigation"><a href="#start">Start here</a><a href="#workflows">Workflows</a><a href="#commands">Commands</a><a href="#sources">Sources</a><button class="button" id="download">Download HTML</button><button class="button theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false"><svg class="moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg><svg class="sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span class="theme-label" id="theme-label">Dark mode</span></button></nav></div></header>
 <main>
 <div class="wrap">
-<section class="intro"><h1>OpenRig cheatsheet</h1><p>Commands for launching teams, assigning work and picking up where you left off.</p><div class="meta">161 examples · 14 categories · Verified against 0.6.11 / 379f0a0d</div></section>
+<section class="intro"><h1>OpenRig cheatsheet</h1><p>Understand the team, choose a workflow and copy the commands you need.</p><div class="meta">178 examples · 14 categories · Verified against 0.6.11 / 379f0a0d</div></section>
+<section class="basics" id="start" aria-labelledby="start-title">
+<h2 id="start-title">Work through one lead</h2>
+<p>Give the lead a concrete outcome, constraints and a way to check success. It coordinates specialists and review; you follow the task and result.</p>
+<dl class="concept-grid">
+<div><dt>Rig &amp; seat</dt><dd>A rig is a persistent team. A seat is a role with an address such as <code>dev-build@starter</code>. Its occupant or native conversation can change.</dd></div>
+<div><dt>Context &amp; skills</dt><dd>Context explains the project and where existing systems live. A router helps find it; a skill gives the procedure for a specific situation.</dd></div>
+<div><dt>Spec &amp; bundle</dt><dd>A RigSpec is the YAML blueprint. A bundle packages the team and its declared resources so another machine can install them.</dd></div>
+</dl>
+<details class="guide"><summary>Choose a command and keep agents oriented</summary><div class="guide-body">
+<div class="guide-table"><table><caption>Choose by the outcome you need</caption><thead><tr><th scope="col">Need</th><th scope="col">Use</th><th scope="col">What it gives you</th></tr></thead><tbody>
+<tr><td>Talk to a live agent</td><td><code>rig send</code></td><td>Input to its terminal. Follow the reply; delivery is not completion.</td></tr>
+<tr><td>Assign accountable work</td><td><code>rig queue create</code></td><td>A durable task ID, owner and history. Follow handoffs through review.</td></tr>
+<tr><td>Find a past decision</td><td><code>rig ask</code></td><td>Retained transcript evidence. <code>--wake</code> executes an agent and uses quota.</td></tr>
+<tr><td>Find project knowledge</td><td><code>rig context work-install</code>, <code>list</code>, <code>get</code></td><td>The selected work context or a library reference. Printing it does not deliver it to another seat.</td></tr>
+<tr><td>Check what is happening</td><td><code>rig ps</code>, <code>capture</code>, <code>queue show</code></td><td>Live status, screen output and retained work. Check all three when a result is unclear.</td></tr>
+</tbody></table></div>
+<h3>Give the agent a map before details</h3><p>Keep AGENTS.md as an entry point to the project’s architecture, decisions, current work and router skills. Show what already exists before asking for implementation. Read the relevant sources once the agent knows where to look.</p>
+<h3>Keep knowledge addressable and checkable</h3><p>Link to one maintained source instead of copying it into every note. A library address such as <code>world-public/start-here.md#what-to-trust</code> selects a Markdown section; local project files use the addressable-Markdown resolver. Treat logs and expert recollections as evidence to check. Age alone does not make a note authoritative.</p>
+<h3>Recover context without changing the outcome</h3><p>After compaction or a handover, re-read the current task, its source documents and acceptance criteria. Use the refocusing procedure when the session has drifted. Keep a short example of the mistake and its consequences in the appropriate project or seat notes so the next occupant can learn from it.</p>
+<h3>Scale a useful team</h3><p>Start with one lead and one reviewed result. Add specialists or registered hosts when the work needs them. Another host needs its own runtime logins and explicit routing; the same rig name on two machines does not identify the same team. A bundle carries declared files, while host settings and retained session history have their own lifecycle.</p>
+</div></details>
+<p class="video-link">Based on <a href="https://www.youtube.com/watch?v=CYRJDTcTKhQ" target="_blank" rel="noopener">Mike Schwarz’s OpenRig video</a>. Explore the <a href="https://openrig.dev/rigs/workshop" target="_blank" rel="noopener">Workshop team and its install choices</a>.</p>
+</section>
 <details class="settings"><summary>Customize examples <span id="settings-preview">my-project / dev-owner</span></summary><div class="settings-grid"><div><label for="rig-name">Rig name</label><input id="rig-name" class="field mono" value="my-project" pattern="[a-zA-Z0-9_.-]+" spellcheck="false"></div><div><label for="seat-name">Task owner / target seat</label><select id="seat-name" class="field"><option value="dev-owner">dev-owner</option><option value="dev-backend">dev-backend</option><option value="dev-frontend">dev-frontend</option><option value="dev-check">dev-check</option><option value="dev-build">dev-build</option><option value="dev-review">dev-review</option><option value="orch-lead">orch-lead</option></select></div><div><label for="spec-path">Rig spec</label><input id="spec-path" class="field mono" value="./openrig/rig.yaml" spellcheck="false"></div><div><label for="model-name">Model</label><input id="model-name" class="field mono" value="gpt-6.1-sol" pattern="[a-zA-Z0-9_.:-]+" spellcheck="false"></div></div></details>
 </div>
-<section class="workflows" id="workflows"><div class="wrap"><h2>Common workflows</h2><p>Pick a task, review the steps and copy the commands.</p><div class="tabs" id="workflow-tabs" role="tablist" aria-label="Common workflows"></div><div class="workflow-panel" id="workflow-panel" role="tabpanel"></div></div></section>
+<section class="workflows" id="workflows"><div class="wrap"><h2>Common workflows</h2><p>Start with guided setup or choose the task you need. Customize names and paths above.</p><div class="tabs" id="workflow-tabs" role="tablist" aria-label="Common workflows"></div><div class="workflow-panel" id="workflow-panel" role="tabpanel"></div></div></section>
 <section class="command-reference" id="commands"><div class="wrap"><h2>Command reference</h2><p>Search or choose a category. Open Notes & source for conditions and details.</p>
 <section class="layout" aria-label="Command browser">
 <aside class="sidebar"><p class="sidebar-label">Categories</p><nav id="categories" class="category-nav" aria-label="Command categories"></nav><div class="sidebar-note"><p><code>--existing</code> reads saved rig state, not edited YAML.</p><p>Restarting the daemon does not restart surviving agents.</p><p><code>send</code> delivers input. <code>queue</code> records work.</p></div></aside>
 <div class="command-pane"><div class="toolbar"><div class="search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 4.5 4.5"/></svg><input id="search" type="search" placeholder="Search commands…" aria-label="Search commands"><button id="clear" class="clear" aria-label="Clear search" hidden>×</button><kbd aria-label="Press slash to search">/</kbd></div><div class="filters" role="group" aria-label="Operation type"><button class="filter active" data-filter="all" aria-pressed="true">All</button><button class="filter" data-filter="read" aria-pressed="false">Read / plan</button><button class="filter" data-filter="change" aria-pressed="false">Change</button><button class="filter" data-filter="stop" aria-pressed="false">Stop</button><button class="filter" data-filter="delete" aria-pressed="false">Delete</button><button class="filter" data-filter="seat" aria-pressed="false">Agent terminal</button><span class="results" id="results" aria-live="polite"></span></div></div><div id="command-list" tabindex="0" role="region" aria-label="Scrollable command examples"></div><noscript><p class="noscript">Enable JavaScript to view and search the command reference.</p></noscript></div>
 </section></div></section>
-<section class="sources" id="sources"><div class="wrap source-grid"><div><h2>Version & sources</h2><p>Commands checked against OpenRig <strong>0.6.11 / 379f0a0d</strong> source. Use <code>rig &lt;command&gt; --help</code> for your installed version. Provider integrations were not run.</p><p>Replace variables with values from CLI output: <code>$RIG_ID</code> is a rig ID; <code>$SEAT_ID</code> is a logical seat ID such as dev.owner; <code>$QITEM_ID</code> and <code>$SNAPSHOT_ID</code> identify saved records. Set <code>$BUNDLE_SOURCE</code> to a real bundle path or GitHub folder URL and <code>$ACCOUNT_REF</code> from provider status. Choose rig and seat names that match your team; model availability depends on the harness and account.</p></div><div class="source-links"><a href="https://github.com/mvschwarz/openrig/releases/tag/v0.6.11" target="_blank" rel="noopener">0.6.11 release notes</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/as-built/cli-reference.md" target="_blank" rel="noopener">CLI reference</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/getting-started.md" target="_blank" rel="noopener">Getting started</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/rig-spec.md" target="_blank" rel="noopener">RigSpec</a><a href="https://github.com/mvschwarz/openrig/tree/379f0a0d106e65164c615818927267c2082ebcb4/packages/cli/src/commands" target="_blank" rel="noopener">CLI source</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/agent-spec.md" target="_blank" rel="noopener">AgentSpec</a><a href="https://learn.chatgpt.com/docs/auth" target="_blank" rel="noopener">Codex authentication</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/instance-layout.md" target="_blank" rel="noopener">Instance layout</a></div></div></section>
+<section class="sources" id="sources"><div class="wrap source-grid"><div><h2>Version & sources</h2><p>Commands checked against OpenRig <strong>0.6.11 / 379f0a0d</strong> source. Use <code>rig &lt;command&gt; --help</code> for your installed version. Provider integrations were not run.</p><p>Replace variables with values from CLI output: <code>$RIG_ID</code> is a rig ID; <code>$SEAT_ID</code> is a logical seat ID such as dev.owner; <code>$QITEM_ID</code> and <code>$SNAPSHOT_ID</code> identify saved records. Set <code>$BUNDLE_SOURCE</code> to a real bundle path or GitHub folder URL and <code>$ACCOUNT_REF</code> from provider status. Choose rig and seat names that match your team; model availability depends on the harness and account.</p></div><div class="source-links"><a href="https://www.youtube.com/watch?v=CYRJDTcTKhQ" target="_blank" rel="noopener">Video: teams &amp; context</a><a href="https://openrig.dev/rigs/workshop" target="_blank" rel="noopener">Workshop listing</a><a href="https://github.com/mvschwarz/openrig/releases/tag/v0.6.11" target="_blank" rel="noopener">0.6.11 release notes</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/as-built/cli-reference.md" target="_blank" rel="noopener">CLI reference</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/getting-started.md" target="_blank" rel="noopener">Getting started</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/rig-spec.md" target="_blank" rel="noopener">RigSpec</a><a href="https://github.com/mvschwarz/openrig/tree/379f0a0d106e65164c615818927267c2082ebcb4/packages/cli/src/commands" target="_blank" rel="noopener">CLI source</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/agent-spec.md" target="_blank" rel="noopener">AgentSpec</a><a href="https://learn.chatgpt.com/docs/auth" target="_blank" rel="noopener">Codex authentication</a><a href="https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/instance-layout.md" target="_blank" rel="noopener">Instance layout</a></div></div></section>
 </main>
 <footer class="footer"><div class="wrap"><span>OpenRig Cheatsheet · Unofficial reference</span><span>Verified October 19, 2026 · Works offline</span></div></footer>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -253,6 +278,17 @@
       "src": "setup"
     },
     {
+      "cat": "start",
+      "title": "Install the agent-guided setup skill",
+      "cmd": "npx skills add https://github.com/mvschwarz/openrig/tree/v0.6.11/skills/rigs --skill rigs --agent codex",
+      "desc": "Add the rigs skill so your existing agent can guide setup.",
+      "note": "Run in your project. Invoke $rigs in Codex; for Claude Code select --agent claude-code and invoke /rigs. Give the agent your project, goal and chosen team page.",
+      "type": "change",
+      "scope": "operator",
+      "src": "external",
+      "sourceURL": "https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/skills/rigs/SKILL.md"
+    },
+    {
       "cat": "daemon",
       "title": "Start without the kernel",
       "cmd": "rig daemon start --no-kernel",
@@ -447,8 +483,8 @@
       "cat": "tasks",
       "title": "Assign a bounded task",
       "cmd": "rig send {{owner}} 'From the project owner. Register this task and report its ID. Add a summary view using existing architecture and UI patterns. Read AGENTS.md first. Plan the change, coordinate implementation and request independent review.'",
-      "desc": "Send an outcome, scope and review requirement to the owner.",
-      "note": "An ordinary shell has no managed-seat sender identity. State who is sending the request.",
+      "desc": "Tell the lead the desired outcome; ask it to register and coordinate the work.",
+      "note": "Use one lead as your entry point. Include scope, acceptance and the review needed. Follow the task ID and reviewed artifact after the message; delivery alone does not establish completion.",
       "type": "change",
       "scope": "operator",
       "src": "send"
@@ -457,8 +493,8 @@
       "cat": "tasks",
       "title": "Clarify current work",
       "cmd": "rig send {{seat}} 'From the project owner. Clarification for the current task: use existing architecture and update the acceptance criteria. Continue under the same task ID.'",
-      "desc": "Update an existing task without creating a new objective.",
-      "note": "Busy is advisory. Drafts, native prompts and other input gates can still refuse delivery; inspect the pane and result before retrying.",
+      "desc": "Update the existing owner without creating a parallel assignment.",
+      "note": "Cite the current qitem ID when known. Change acceptance criteria under that task so the lead and reviewers share the same target.",
       "type": "change",
       "scope": "operator",
       "src": "send"
@@ -497,8 +533,8 @@
       "cat": "tasks",
       "title": "Create a durable task",
       "cmd": "rig queue create --source project-owner --destination {{owner}} --summary 'Summary view' --body 'Add a summary view. Read AGENTS.md, plan the change, implement it and request independent review.' --priority routine",
-      "desc": "Persist a qitem; its destination wake follows asynchronously.",
-      "note": "A successful create proves the task was saved, not delivered or read. Add --verify for a bounded receipt check. Outside a managed seat, --source is a declared sender, not verified identity.",
+      "desc": "Record an outcome, accountable owner and acceptance criteria in the queue.",
+      "note": "Creation saves the task; its wake follows asynchronously. --verify checks a bounded receipt. Outside a managed seat, --source declares a sender but does not establish a managed identity.",
       "type": "change",
       "scope": "operator",
       "src": "queue"
@@ -524,11 +560,51 @@
       "src": "queue"
     },
     {
+      "cat": "tasks",
+      "title": "Search past team decisions",
+      "cmd": "rig ask {{rig}} 'What did we decide about the API contract?'",
+      "desc": "Search retained transcript history for relevant past decisions.",
+      "note": "This reads history without starting an agent. Use the result to find evidence, then check current code and project decisions. Missing history is not proof that the work never happened.",
+      "type": "read",
+      "scope": "operator",
+      "src": "ask"
+    },
+    {
+      "cat": "tasks",
+      "title": "Search one seat across generations",
+      "cmd": "rig ask {{rig}} 'Why did we choose this design?' --seat {{seat}}",
+      "desc": "Limit a history search to all recorded occupants of one seat.",
+      "note": "A seat’s address can persist while occupants change. This searches retained history across generations; it does not contact the live agent.",
+      "type": "read",
+      "scope": "operator",
+      "src": "ask"
+    },
+    {
+      "cat": "tasks",
+      "title": "Search one retained native session",
+      "cmd": "rig ask {{rig}} 'What was left unfinished?' --session \"$SESSION_TOKEN\"",
+      "desc": "Read one native session’s retained JSONL by its actual token.",
+      "note": "Use the runtime conversation token, not a qitem ID, rig UUID or logical seat ID. Availability depends on keeping the session files.",
+      "type": "read",
+      "scope": "operator",
+      "src": "ask"
+    },
+    {
+      "cat": "tasks",
+      "title": "Wake a past Codex session for one answer",
+      "cmd": "rig ask {{rig}} 'Explain the design decision and cite its evidence.' --wake \"$SESSION_TOKEN\" --runtime codex --wake-timeout 180",
+      "desc": "Resume retained context in a one-shot agent process and collect its answer.",
+      "note": "This executes an agent and uses runtime quota. Choose the matching runtime: codex or claude (the default). The process exits after answering. Treat recollection as testimony to verify, rather than current project authority.",
+      "type": "change",
+      "scope": "operator",
+      "src": "ask"
+    },
+    {
       "cat": "queue",
       "title": "List the owner's tasks",
       "cmd": "rig queue list -A --destination {{owner}}",
-      "desc": "Show active work assigned to the owner.",
-      "note": "-A spans rigs; there is no --rig flag on queue list. Compact rows now include summary. JSON names omitted fields in fieldsElided; use --full when you need complete fields.",
+      "desc": "Read the selected owner’s active obligations and find the task to follow.",
+      "note": "From an observer shell, choose an explicit destination. -A includes all rigs in the search; -a also includes closed history. Keep the returned qitem ID for show and transitions.",
       "type": "read",
       "scope": "operator",
       "src": "queue"
@@ -547,8 +623,8 @@
       "cat": "queue",
       "title": "Read the full task",
       "cmd": "rig queue show \"$QITEM_ID\" --full",
-      "desc": "Read the complete qitem body.",
-      "note": "Set QITEM_ID to the ID returned by queue create or queue list.",
+      "desc": "Read the complete brief, retained state and ownership before acting.",
+      "note": "Use the qitem ID returned by create or list. --full includes content omitted by compact previews; read transitions for the history of changes.",
       "type": "read",
       "scope": "operator",
       "src": "queue"
@@ -557,8 +633,8 @@
       "cat": "queue",
       "title": "Read task transitions",
       "cmd": "rig queue transitions \"$QITEM_ID\"",
-      "desc": "Inspect the append-only transition history.",
-      "note": "",
+      "desc": "Trace claims, state changes and handoffs for an existing task.",
+      "note": "Follow the successor task after a handoff. A closed predecessor does not establish that review or the next stage has finished.",
       "type": "read",
       "scope": "operator",
       "src": "queue"
@@ -667,8 +743,8 @@
       "cat": "inspect",
       "title": "Capture recent output",
       "cmd": "rig capture {{seat}} --lines 100",
-      "desc": "Read the last 100 lines from one pane.",
-      "note": "In 0.6.11, --lines 100 returns the last 100 lines total. JSON adds requestedLines and omittedLines when trimmed. Use --history-plus-pane for the former history-plus-visible-pane behaviour.",
+      "desc": "Read what is on the selected agent’s terminal, including prompts and errors.",
+      "note": "--lines 100 returns the last 100 lines total. A terminal capture is current screen evidence; use transcript or ask for earlier reasoning.",
       "type": "read",
       "scope": "operator",
       "src": "capture"
@@ -687,8 +763,8 @@
       "cat": "inspect",
       "title": "Read the transcript",
       "cmd": "rig transcript {{seat}} --tail 100",
-      "desc": "Read recorded terminal lines.",
-      "note": "Availability depends on transcript capture configuration.",
+      "desc": "Read earlier recorded conversation when the visible pane is insufficient.",
+      "note": "Transcripts depend on retained capture and session files. Use rig ask for a question about recorded decisions; verify important answers against current files.",
       "type": "read",
       "scope": "operator",
       "src": "transcript"
@@ -796,9 +872,9 @@
     {
       "cat": "inspect",
       "title": "Open the kernel conversation view",
-      "cmd": "rig terminal open saved:kernel",
-      "desc": "Show the kernel dashboard, advisor and operator.",
-      "note": "The built-in view works without a saved-view file. Your own saved kernel view takes precedence.",
+      "cmd": "rig terminal open saved:kernel --window",
+      "desc": "Open the operator conversation and dashboard in the managed kernel view.",
+      "note": "The operator helps choose and launch a project team. In headless use, keep the exact connection/attach command printed by OpenRig. Reuse an already-open view.",
       "type": "change",
       "scope": "operator",
       "src": "terminal"
@@ -927,8 +1003,8 @@
       "cat": "yaml",
       "title": "Inspect a rig bundle or GitHub folder",
       "cmd": "rig bundle inspect \"$BUNDLE_SOURCE\" --json",
-      "desc": "Read a bundle's team, models, permissions, writes and startup actions.",
-      "note": "Set BUNDLE_SOURCE to a real .rigbundle path or public GitHub folder URL. GitHub imports need git and a running local daemon; review behaviour before installation.",
+      "desc": "Read the packaged team, declared files and launch behavior before installation.",
+      "note": "A RigSpec describes the team; a bundle carries declared agent specs and resources too. Inspect permissions, runtime choices and the printed source commit; the host’s logins and effective settings remain separate.",
       "type": "read",
       "scope": "operator",
       "src": "bundle"
@@ -937,8 +1013,8 @@
       "cat": "yaml",
       "title": "Plan a bundle installation",
       "cmd": "rig bundle install \"$BUNDLE_SOURCE\" --target ./openrig/installed --cwd . --plan",
-      "desc": "Preview materialization and launch for a bundle.",
-      "note": "The install folder and agent working folder are distinct. Change --target deliberately; this example keeps install files under openrig/installed.",
+      "desc": "Preview target changes and compatibility without launching the team.",
+      "note": "--target is the installation folder; --cwd is the agents’ working repository. If selecting a declared --preset, use the same preset for inspection, planning and installation.",
       "type": "read",
       "scope": "operator",
       "src": "bundle"
@@ -947,11 +1023,51 @@
       "cat": "yaml",
       "title": "Install a reviewed bundle",
       "cmd": "rig bundle install \"$BUNDLE_SOURCE\" --target ./openrig/installed --cwd .",
-      "desc": "Install bundle resources before starting its seats.",
-      "note": "Stop an existing running team before replacement. Conflicting files in a stopped team's recorded install folder are backed up. The workshop comes from the external registry, not the built-in shelf.",
+      "desc": "Install the declared team resources and bootstrap its agents.",
+      "note": "Review inspect and --plan first. Keep the printed source commit and package digest. If the response is lost, check ps and bundle history before retrying; installation may have completed.",
       "type": "change",
       "scope": "operator",
       "src": "bundle"
+    },
+    {
+      "cat": "yaml",
+      "title": "Check a shareable team folder",
+      "cmd": "rig bundle check ./openrig --json",
+      "desc": "Check the local bundle authoring structure without launching a team.",
+      "note": "Advisory check: findings exit 1. It neither validates every README claim nor proves the team will work. Use the actual authored bundle folder.",
+      "type": "read",
+      "scope": "operator",
+      "src": "bundle"
+    },
+    {
+      "cat": "yaml",
+      "title": "Package a team for sharing",
+      "cmd": "rig bundle create {{spec}} --output ./team.rigbundle --json",
+      "desc": "Package a RigSpec and its declared resources into a portable archive.",
+      "note": "Keep the generated .rigbundle.sha256 beside the archive. Use --context-pack for a declared context library and --project-dir for a project to carry. Unlisted dependencies and host logins are not automatically bundled.",
+      "type": "change",
+      "scope": "operator",
+      "src": "bundle"
+    },
+    {
+      "cat": "yaml",
+      "title": "Inspect bundle installation history",
+      "cmd": "rig bundle history --json",
+      "desc": "Check recorded bundle installations and source receipts.",
+      "note": "Use after installation or an uncertain response before retrying. A receipt records an install; inspect current seats and artifacts for readiness and useful work.",
+      "type": "read",
+      "scope": "operator",
+      "src": "bundle"
+    },
+    {
+      "cat": "yaml",
+      "title": "Launch a reviewed GitHub team folder",
+      "cmd": "rig up \"$BUNDLE_SOURCE\" --target ./openrig/installed --cwd .",
+      "desc": "Install and launch a team directly from its GitHub folder link.",
+      "note": "Set BUNDLE_SOURCE to the full commit-pinned folder URL from the reviewed listing. Requires a verified local daemon. --target chooses the installed files; --cwd chooses the work repository.",
+      "type": "change",
+      "scope": "operator",
+      "src": "up"
     },
     {
       "cat": "models",
@@ -1277,8 +1393,8 @@
       "cat": "skills",
       "title": "List context packs",
       "cmd": "rig context list",
-      "desc": "Browse the instance context library.",
-      "note": "",
+      "desc": "Discover the context library before searching deeply or creating new instructions.",
+      "note": "Start with a broad map, then retrieve only relevant refs with context get. A listed pack exists in the library; that does not prove an agent has read it.",
       "type": "read",
       "scope": "operator",
       "src": "context"
@@ -1297,8 +1413,8 @@
       "cat": "skills",
       "title": "Inspect project context",
       "cmd": "rig context work-install --runtime codex --cwd . --json",
-      "desc": "Read the composed System World, topology and Project World context.",
-      "note": "An edited selected catalog skill can be skipped with exit 1. --apply-skills explicitly reconciles the remaining clean skills. An edited catalog.yaml still blocks the entire catalog.",
+      "desc": "Resolve the project’s declared intent, context files and selected skills.",
+      "note": "Use --deliver to include planned file contents. If several projects match, use a returned --project command. Inspect before --apply-skills, which changes managed skill projections.",
       "type": "read",
       "scope": "operator",
       "src": "context"
@@ -1307,8 +1423,8 @@
       "cat": "skills",
       "title": "Deliver a context pack",
       "cmd": "rig send {{seat}} --context \"$CONTEXT_REF\"",
-      "desc": "Send an existing context pack to a seat.",
-      "note": "Set CONTEXT_REF to a library reference from context list/show.",
+      "desc": "Send the selected library content to an existing seat.",
+      "note": "Choose CONTEXT_REF from context list/show. context get only prints to your shell; send --context delivers to the target. Delivery still does not establish understanding.",
       "type": "change",
       "scope": "operator",
       "src": "send"
@@ -1320,6 +1436,56 @@
       "desc": "Reconcile the composed managed skill selection.",
       "note": "Inspect without --apply-skills first. Clean skills can change even when a selected uncommitted skill is skipped and the command exits 1.",
       "type": "change",
+      "scope": "operator",
+      "src": "context"
+    },
+    {
+      "cat": "skills",
+      "title": "Read the capability map",
+      "cmd": "rig context get onboarding-width",
+      "desc": "Get a broad view of what OpenRig already provides.",
+      "note": "Use this before assuming a capability is missing or adding a parallel implementation. Follow its references for details relevant to your task.",
+      "type": "read",
+      "scope": "operator",
+      "src": "context"
+    },
+    {
+      "cat": "skills",
+      "title": "Open the skill router",
+      "cmd": "rig context get openrig-skills",
+      "desc": "Find the skill that matches the current situation.",
+      "note": "Discover with context list, select the matching ref, then load it. A skill description tells an agent when to reach for the procedure; its body supplies the steps.",
+      "type": "read",
+      "scope": "operator",
+      "src": "context"
+    },
+    {
+      "cat": "skills",
+      "title": "Read one addressed context section",
+      "cmd": "rig context get 'world-public/start-here.md#what-to-trust'",
+      "desc": "Load one Markdown section from the installed context library.",
+      "note": "Library addresses use file.md#h2-slug or file.md#h2-slug/h3-slug. Quote them in the shell. For arbitrary project files, use the loading-addressable-markdown skill’s resolver instead.",
+      "type": "read",
+      "scope": "operator",
+      "src": "context"
+    },
+    {
+      "cat": "skills",
+      "title": "Read composed project files",
+      "cmd": "rig context work-install --runtime codex --cwd . --deliver --json",
+      "desc": "Include the existing planned context-file contents in the resolved work context.",
+      "note": "Read AGENTS.md and the selected project sources. --project, --mission and --slice narrow to real IDs. Printing context does not send it to another agent or establish that it was consumed.",
+      "type": "read",
+      "scope": "operator",
+      "src": "context"
+    },
+    {
+      "cat": "skills",
+      "title": "Read the refocusing procedure",
+      "cmd": "rig context get refocusing",
+      "desc": "Find the procedure for re-grounding a long session in its current outcome.",
+      "note": "Use after compaction or a substantial boundary change when context may have drifted. Follow the loaded procedure and inspect its named sources; simply printing the skill does not complete refocusing.",
+      "type": "read",
       "scope": "operator",
       "src": "context"
     },
@@ -1416,9 +1582,9 @@
     {
       "cat": "accounts",
       "title": "Inspect all HTTP hosts",
-      "cmd": "rig ps --all-hosts --nodes --json",
-      "desc": "Fan out read-only seat inspection to registered HTTP hosts.",
-      "note": "",
+      "cmd": "rig ps --all-hosts --nodes -A --json",
+      "desc": "Read per-seat observations across all registered HTTP hosts.",
+      "note": "Cross-host node inspection requires explicit -A. For one remote team, use --host \"$HOST_ID\" --nodes --rig {{rig}}. Host registration and connectivity are separate from team readiness.",
       "type": "read",
       "scope": "operator",
       "src": "ps"
@@ -1494,6 +1660,26 @@
       "src": "provider"
     },
     {
+      "cat": "accounts",
+      "title": "Inspect a team on another host",
+      "cmd": "rig ps --host \"$HOST_ID\" --nodes --rig {{rig}} --json",
+      "desc": "Read one explicitly named team on a registered host.",
+      "note": "Get HOST_ID from host list. Seat addresses are meaningful on their host; do not assume a same-named rig is the same team elsewhere.",
+      "type": "read",
+      "scope": "operator",
+      "src": "ps"
+    },
+    {
+      "cat": "accounts",
+      "title": "Ask a live expert on another host",
+      "cmd": "rig send --host \"$HOST_ID\" {{seat}} 'From the project owner. Explain the existing implementation and point to its current source.' --verify",
+      "desc": "Send a question to an existing specialist on the selected host.",
+      "note": "Requires a registered, reachable host and the correct live seat address. --verify observes delivery; capture the answer or follow the task when work is assigned.",
+      "type": "change",
+      "scope": "operator",
+      "src": "send"
+    },
+    {
       "cat": "usage",
       "title": "Rank token usage",
       "cmd": "rig usage top --window 1h --top 10",
@@ -1562,6 +1748,16 @@
       "type": "change",
       "scope": "operator",
       "src": "config"
+    },
+    {
+      "cat": "usage",
+      "title": "Identify the current managed seat",
+      "cmd": "rig whoami --full --json",
+      "desc": "Read your own live rig, pod, role and session identity.",
+      "note": "Run inside a managed agent session. In an observer shell, use whoami --session with a known address. Project instructions and old summaries can describe an earlier occupant.",
+      "type": "read",
+      "scope": "operator",
+      "src": "whoami"
     },
     {
       "cat": "advanced",
@@ -1785,8 +1981,20 @@ function source(e){if(e.sourceURL)return e.sourceURL;if(e.src==="release")return
 function normalize(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
 function renderCategories(){let html='<button class="category '+(state.category==="all"?"active":"")+'" data-cat="all" aria-pressed="'+(state.category==="all")+'">All commands<span class="count">'+entries.length+'</span></button>';for(const cat of categories){html+='<button class="category '+(state.category===cat.id?"active":"")+'" data-cat="'+cat.id+'" aria-pressed="'+(state.category===cat.id)+'">'+escapeHTML(cat.name)+'<span class="count">'+entries.filter(e=>e.cat===cat.id).length+'</span></button>';}$("#categories").innerHTML=html;}
 function visible(e){if(state.category!=="all"&&e.cat!==state.category)return false;if(state.filter==="seat"){if(e.scope!=="seat")return false;}else if(state.filter!=="all"&&e.type!==state.filter)return false;const text=normalize([e.title,e.desc,e.note,command(e.cmd),categories.find(c=>c.id===e.cat).name].join(" "));return normalize(state.query).trim().split(/\s+/).every(word=>text.includes(word));}
-function render(){let count=0,html="";for(const cat of categories){const items=entries.map((e,i)=>({e,i})).filter(x=>x.e.cat===cat.id&&visible(x.e));if(!items.length)continue;count+=items.length;html+='<section class="group" aria-labelledby="cat-'+cat.id+'"><div class="group-head"><h2 id="cat-'+cat.id+'">'+escapeHTML(cat.name)+'</h2><span class="total">'+items.length+'</span></div>';for(const {e,i} of items){html+='<article class="entry"><div class="entry-head"><h3>'+escapeHTML(e.title)+'</h3><span class="kind '+e.type+'">'+names[e.type]+'</span>'+(e.scope==="seat"?'<span class="kind agent">Agent terminal</span>':'')+'</div><div class="command"><pre>'+escapeHTML(command(e.cmd))+'</pre>'+copyButton(i)+'</div><p class="entry-description">'+escapeHTML(e.desc)+'</p><details class="entry-note"><summary>'+(e.note?"Notes & source":"Source")+'</summary>'+(e.note?'<p>'+escapeHTML(e.note)+'</p>':'')+'<a href="'+source(e)+'" target="_blank" rel="noopener">Command source</a></details></article>';}html+='</section>';}if(!count)html='<div class="empty"><strong>No matching commands.</strong>Try a different query, category or filter.<br><button class="button" id="reset">Show all commands</button></div>';$("#command-list").innerHTML=html;$("#command-list").scrollTop=0;$("#results").textContent=count+" / "+entries.length;$("#clear").hidden=!state.query;document.querySelectorAll(".filter").forEach(b=>{const active=b.dataset.filter===state.filter;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active);});}
+function render(){let count=0,html="";for(const cat of categories){const items=entries.map((e,i)=>({e,i})).filter(x=>x.e.cat===cat.id&&visible(x.e));if(!items.length)continue;count+=items.length;html+='<section class="group" aria-labelledby="cat-'+cat.id+'"><div class="group-head"><h2 id="cat-'+cat.id+'">'+escapeHTML(cat.name)+'</h2><span class="total">'+items.length+'</span></div><p class="group-hint">'+escapeHTML(cat.hint)+'</p>';for(const {e,i} of items){html+='<article class="entry"><div class="entry-head"><h3>'+escapeHTML(e.title)+'</h3><span class="kind '+e.type+'">'+names[e.type]+'</span>'+(e.scope==="seat"?'<span class="kind agent">Agent terminal</span>':'')+'</div><div class="command"><pre>'+escapeHTML(command(e.cmd))+'</pre>'+copyButton(i)+'</div><p class="entry-description">'+escapeHTML(e.desc)+'</p><details class="entry-note"><summary>'+(e.note?"Notes & source":"Source")+'</summary>'+(e.note?'<p>'+escapeHTML(e.note)+'</p>':'')+'<a href="'+source(e)+'" target="_blank" rel="noopener">Command source</a></details></article>';}html+='</section>';}if(!count)html='<div class="empty"><strong>No matching commands.</strong>Try a different query, category or filter.<br><button class="button" id="reset">Show all commands</button></div>';$("#command-list").innerHTML=html;$("#command-list").scrollTop=0;$("#results").textContent=count+" / "+entries.length;$("#clear").hidden=!state.query;document.querySelectorAll(".filter").forEach(b=>{const active=b.dataset.filter===state.filter;b.classList.toggle("active",active);b.setAttribute("aria-pressed",active);});}
 const workflows=[
+  {
+    "label": "Guided setup",
+    "title": "Let your existing agent set up OpenRig",
+    "desc": "Use the rigs skill for installation, the operator view and choosing a team.",
+    "steps": [
+      "Install the skill for the runtime you use, from your project folder.",
+      "Invoke $rigs in Codex or /rigs in Claude Code. Give it the repository, outcome and team page.",
+      "Let the agent check the installation and open the operator; confirm which team to launch."
+    ],
+    "code": "npx skills add https://github.com/mvschwarz/openrig/tree/v0.6.11/skills/rigs --skill rigs --agent codex\n\n# In your Codex chat, invoke $rigs and give it your project and outcome.\n# For Claude Code, install with --agent claude-code and invoke /rigs.\n\n# To return to an existing installation:\nrig daemon status\nrig ps -A\nrig terminal open saved:kernel --window",
+    "note": "The skill is an instruction entry point, not a launched team. For a new installation it handles prerequisites and the handoff. Reuse a team already working in your repository. Workshop is an external four-seat bundle; the operator can inspect its listing and adapt provider choices."
+  },
   {
     "label": "First launch",
     "title": "Launch a team from YAML",
@@ -1800,16 +2008,64 @@ const workflows=[
     "note": "Customize the rig and seat names to match your YAML. Launches write managed files in the project. starter uses Claude Code plus Codex; use your own spec for another mix."
   },
   {
+    "label": "Install a bundle",
+    "title": "Bring in a team with its declared context",
+    "desc": "Use the Workshop listing or another reviewed GitHub team folder.",
+    "steps": [
+      "Get the full commit-pinned source URL from the team listing.",
+      "Inspect roles, runtime choices, declared permissions and installed files.",
+      "Plan, install and check every seat before assigning an outcome to its lead."
+    ],
+    "code": "# Set BUNDLE_SOURCE to the commit-pinned GitHub folder URL from the listing.\nrig bundle inspect \"$BUNDLE_SOURCE\" --json\nrig bundle install \"$BUNDLE_SOURCE\" --target ./openrig/installed --cwd . --plan\n\n# After reviewing the declared behavior and plan:\nrig bundle install \"$BUNDLE_SOURCE\" --target ./openrig/installed --cwd .\n# Set Rig name above to the installed rig name, e.g. workshop.\nrig ps --nodes --rig {{rig}} --full\nrig bundle history --json",
+    "note": "Workshop has a lead, builder, QA and reviewer and declares broad access with non-interruptive launches. Choose deliberately from its listing. If using a declared --preset such as all-codex, pass it consistently to inspect, plan and install. The target holds team files; cwd is the repository they work on. Set the target seat to the installed lead; Workshop uses orch-lead@workshop."
+  },
+  {
+    "label": "Project context",
+    "title": "Orient the agent before implementation",
+    "desc": "Start with what exists, then read the references needed for this task.",
+    "steps": [
+      "Read AGENTS.md and inspect the project’s declared context.",
+      "Use the capability map and router to locate existing primitives and procedures.",
+      "Read the relevant sources and check that links lead to actual files or specialists."
+    ],
+    "code": "rig context work-install --runtime codex --cwd . --deliver --json\nrig context get onboarding-width\nrig context get openrig-skills\nrig context list\n\n# Example addressed section in a bundled context pack:\nrig context get 'world-public/start-here.md#what-to-trust'",
+    "note": "If project_required names several candidates, choose an exact returned --project command. context get reads the library; it does not send content to another seat. For local project Markdown sections, follow loading-addressable-markdown. After compaction, use refocusing and re-read the current work sources."
+  },
+  {
     "label": "Assign a task",
     "title": "Create a task and follow its owner",
-    "desc": "Give one owner a goal, scope and acceptance criteria.",
+    "desc": "Give one lead the outcome, boundaries and acceptance criteria; follow the same queue chain.",
     "steps": [
       "Create the task and keep its returned qitem ID.",
       "Check the owner’s queue and terminal.",
       "Follow handoffs through review to a verified result."
     ],
     "code": "rig queue create --source project-owner --destination {{owner}} --summary 'Summary view' --body-file - --verify <<'TASK'\nFrom the project owner.\nGoal: add a summary view using existing routes, data sources and UI patterns.\nRead AGENTS.md and subdirectory instructions first.\nPlan the change, implement it, run relevant checks and request independent review.\nAcceptance: follows the existing architecture; tests pass; review findings are resolved.\nTASK\n\nrig queue list -A --destination {{owner}}\nrig capture {{owner}} --lines 100",
-    "note": "--verify reports claimed even when the wake is unconfirmed. A saved task or claim does not prove it was read. Check queue show \"$QITEM_ID\" --full before retrying; use send for clarifications."
+    "note": "Let the lead delegate and collect review. Follow queue show and transitions to the successor task, candidate and verdict. --verify reports claimed even when wake is unconfirmed; a receipt or claim does not prove a reviewed result."
+  },
+  {
+    "label": "Ask an expert",
+    "title": "Recover an existing decision before rebuilding",
+    "desc": "Use retained history or the specialist who owns the domain.",
+    "steps": [
+      "Search the team’s history, then narrow to a known seat or session.",
+      "If the expert is live, send a focused question and read the reply.",
+      "If necessary, choose a one-shot wake explicitly and verify the answer against current evidence."
+    ],
+    "code": "rig ask {{rig}} 'What did we decide about the API contract?'\nrig ask {{rig}} 'Why this design?' --seat {{seat}}\n\n# For a live expert:\nrig send {{seat}} 'From the project owner. Explain the existing implementation and cite its current files.' --verify\nrig capture {{seat}} --lines 100\n\n# Optional: executes Codex and uses quota. Use its actual retained token.\nrig ask {{rig}} 'Explain the design decision.' \\\n  --wake \"$SESSION_TOKEN\" --runtime codex --wake-timeout 180",
+    "note": "Ordinary ask searches history; --wake starts a one-shot agent and exits after the answer. Retained files and a valid runtime login are required. Use --runtime claude for Claude sessions. A recollection can explain a decision but must be checked against current project sources."
+  },
+  {
+    "label": "Share a team",
+    "title": "Package a repeatable team for another project or host",
+    "desc": "A RigSpec describes the team; a bundle includes its declared resources.",
+    "steps": [
+      "Review the authored team folder, context and expected runtime requirements.",
+      "Check the folder, build an archive and inspect the result.",
+      "Share the archive with its sibling digest and document logins, dependencies and a first task."
+    ],
+    "code": "# Use your authored team folder and spec.\nrig bundle check ./openrig --json\nrig bundle create {{spec}} --output ./team.rigbundle --json\nrig bundle inspect ./team.rigbundle --json\n\n# Keep team.rigbundle.sha256 with the archive.",
+    "note": "Review the packaged files and launch behavior before sharing. --context-pack and --project-dir can carry additional declared context or project files. A package digest identifies selected bytes; it does not prove host settings or team performance. Start with one useful reviewed outcome before scaling out."
   },
   {
     "label": "After a limit",
