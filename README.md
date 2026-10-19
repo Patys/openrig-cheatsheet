@@ -1,117 +1,64 @@
 # OpenRig Cheatsheet
 
-A minimal, interactive command reference for [OpenRig](https://github.com/mvschwarz/openrig).
+[Open the cheatsheet](https://patys.github.io/openrig-cheatsheet/) for copyable workflows and a searchable command reference.
 
-**Website:** https://patys.github.io/openrig-cheatsheet/
+Targets **OpenRig 0.6.11**, release commit [`379f0a0d`](https://github.com/mvschwarz/openrig/tree/379f0a0d106e65164c615818927267c2082ebcb4). Commands were checked against the release source on October 19, 2026; provider integrations were not run. Use `rig <command> --help` to check your installed version.
 
-## What's included
+## Everyday workflows
 
-- 151 command examples in 14 categories.
-- Search and filters for read, change, stop, delete and agent-terminal commands.
-- Copy buttons and editable examples for rig names, seats, spec paths and models.
-- Nine workflows: first launch, assign a task, continue after a limit, resume work, start fresh sessions, recover a missing session, reload YAML, change a model and upgrade.
-- Workflows above a scrollable command browser; light/dark mode with a remembered preference.
-- Links to the upstream documentation and command source.
+Set the rig name, target seat, YAML path and model under **Customize examples**, then choose a workflow:
 
-The page is written in English and uses generic project examples. It is a single HTML file with inline CSS and JavaScript, with no build step or external dependencies.
+| Workflow | Use it to |
+| --- | --- |
+| First launch | Validate and launch a team from YAML. |
+| Assign a task | Create durable work and follow its owner through review. |
+| After a limit | Inspect quota and continue the existing task after reset. |
+| Resume work | Restore a saved team and inspect each seat. |
+| Fresh sessions | Start new conversations after saving active work. |
+| Restore decision | Resolve `awaiting-decision` or an unavailable conversation. |
+| Restart Codex | Restart one seat on the same conversation, **Linux only**. |
+| Reload YAML | Apply an edited team configuration. |
+| Change model | Save a model selection for the next managed launch. |
+| Upgrade | Install 0.6.11, restart the daemon and resume the team. |
 
-## Use locally
+The command browser has 161 examples in 14 categories, with search, operation filters, copy buttons and source links. Commands are copied as text; the page does not execute them.
 
-Download `index.html` and open it in a browser, or serve the repository:
+## Quick commands
+
+Replace `my-project` and `dev-owner` with names from your own team.
+
+```sh
+rig --version
+rig daemon status
+rig ps --nodes --rig my-project --full
+rig queue list -A --destination dev-owner@my-project
+rig capture dev-owner@my-project --lines 100
+rig terminal open my-project
+```
+
+`rig up my-project --existing` uses saved configuration. Launch from the YAML file to apply edits. `--fresh` starts new native conversations and takes logical seat IDs such as `dev.owner`, rather than session addresses such as `dev-owner@my-project`.
+
+For a seat at `awaiting-decision`, read the recovery command before choosing fresh priming. A partial restore can leave other seats running successfully. `rig seat continue` only delivers pending startup context.
+
+## Run locally
+
+Open `index.html` directly, or serve the repository:
 
 ```sh
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000.
+Open [localhost:8000](http://localhost:8000). The single HTML file has no build step or external dependencies and works offline; source links need a connection.
 
-The command reference works offline. Source links require an internet connection. Commands are copied as text; the page does not execute them.
+## Maintain and publish
 
-## Start with fresh sessions
+Edit `index.html`: `command-data` contains categories and commands; `workflows` contains the step-by-step examples. Check changed commands against the tagged release source, then update the version, commit, date and example counts together.
 
-Plain `rig up <rig>` resumes saved conversations. To start new conversations for an existing team, pass its logical seat IDs to `--fresh`.
+GitHub Pages serves `main` from `/ (root)`. Keep `.nojekyll`; pushes publish automatically when Pages is enabled.
 
-```sh
-# Find the logical seat IDs before stopping:
-rig ps --nodes --rig my-project --full
+## Upstream references
 
-# After agents save active work; skip if already stopped:
-rig down my-project
-
-# Example IDs: replace these with every seat in your rig.
-rig up my-project --existing \
-  --fresh dev.owner dev.backend dev.check dev.frontend \
-  --yes
-
-rig ps --nodes --rig my-project --full
-```
-
-Use logical IDs in `pod.member` form, not session addresses or UUIDs:
-
-| Session address | Logical seat ID for `--fresh` |
-| --- | --- |
-| `dev-owner@my-project` | `dev.owner` |
-| `dev-backend@my-project` | `dev.backend` |
-| `dev-check@my-project` | `dev.check` |
-| `dev-frontend@my-project` | `dev.frontend` |
-
-Confirm IDs in the node details, restore output or your YAML's pod and member IDs. Rig and snapshot UUIDs from `rig down` are not seat IDs.
-
-List **every seat** after `--fresh` to start the whole team fresh. Naming one seat starts that seat fresh; unlisted seats follow normal restoration. `--existing` reuses saved rig configuration. Fresh priming keeps durable tasks, files and configured context while starting a new native conversation. For a blank occupant on one seat, use the separate `rig seat launch <seat> --fresh` operation.
-
-See the **Fresh sessions** workflow on the website and [upstream launch source](https://github.com/mvschwarz/openrig/blob/3001cc436656c435e54425443e708e3e2d8c7d68/packages/cli/src/commands/up.ts).
-
-## GitHub Pages
-
-Publish the repository root from the `main` branch:
-
-1. Open **Settings → Pages**.
-2. Select **Deploy from a branch**.
-3. Choose **main** and **/ (root)**, then save.
-
-The `.nojekyll` file allows GitHub Pages to serve the page without Jekyll processing. After Pages is enabled, updates to `main` publish automatically.
-
-GitHub Pages from a private repository requires a supported paid GitHub plan. The site can be public while the source repository stays private.
-
-## Reference version
-
-Verified against **OpenRig 0.6.10**, commit `3001cc436656c435e54425443e708e3e2d8c7d68`, on October 14, 2026.
-
-This is an unofficial reference. CLI commands and flags may change. Check `rig --help` and each command's help against your installed version.
-
-Examples that use IDs or file paths require real values from your environment. Model availability depends on your runtime and account. Read each command's notes before running it.
-
-## Changes since the previous reference
-
-Updated from 0.6.5 to the latest published release, **0.6.10** ([release notes](https://github.com/mvschwarz/openrig/releases/tag/v0.6.10)), including relevant changes from 0.6.6–0.6.9:
-
-- Current starter/factory names, providers and seat roles.
-- Provider-selective setup, default Herdr installation and optional Ghostty.
-- Automatic pre-down snapshots and guidance restoration on resume.
-- Asynchronous queue creation, bounded `--verify` receipts and compact JSON fields.
-- Exact `capture --lines` tails and the `--history-plus-pane` compatibility option.
-- Partial restore diagnostics, startup continuation and explicit fresh priming.
-- Provider limit/account inspection, guarded switching and Slack delivery diagnostics.
-- Team/kernel permission defaults and the CLI/daemon upgrade sequence.
-
-The examples were checked against the release's CLI source and relevant release notes. This is not an authenticated runtime or provider integration test. Some release limitations remain: `doctor` checks both harnesses, `tui --shared` uses the default tmux socket, and an indeterminate queue verification receipt can coexist with a recorded claim.
-
-## Update the reference
-
-Edit `index.html`:
-
-- Command entries and categories are in the `command-data` JSON block.
-- Workflow examples are in the `workflows` array.
-- Styles and application logic are embedded in the same file.
-
-Check changed commands against the upstream CLI source and update the version, source links and verification date together.
-
-## Upstream resources
-
-- [OpenRig 0.6.10 release](https://github.com/mvschwarz/openrig/releases/tag/v0.6.10)
-- [Registered CLI reference](https://github.com/mvschwarz/openrig/blob/3001cc436656c435e54425443e708e3e2d8c7d68/docs/as-built/cli-reference.md)
-
-- [Getting started](https://github.com/mvschwarz/openrig/blob/3001cc436656c435e54425443e708e3e2d8c7d68/docs/reference/getting-started.md)
-- [Rig specification](https://github.com/mvschwarz/openrig/blob/3001cc436656c435e54425443e708e3e2d8c7d68/docs/reference/rig-spec.md)
-- [CLI command source](https://github.com/mvschwarz/openrig/tree/3001cc436656c435e54425443e708e3e2d8c7d68/packages/cli/src/commands)
-- [GitHub Pages setup](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+- [OpenRig 0.6.11 release](https://github.com/mvschwarz/openrig/releases/tag/v0.6.11)
+- [CLI source at the release commit](https://github.com/mvschwarz/openrig/tree/379f0a0d106e65164c615818927267c2082ebcb4/packages/cli/src/commands)
+- [Getting started](https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/getting-started.md)
+- [Rig specification](https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/rig-spec.md)
