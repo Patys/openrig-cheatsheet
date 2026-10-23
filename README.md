@@ -2,7 +2,17 @@
 
 [Open the cheatsheet](https://patys.github.io/openrig-cheatsheet/) for copyable workflows and a searchable command reference.
 
-Targets **OpenRig 0.6.11**, release commit [`379f0a0d`](https://github.com/mvschwarz/openrig/tree/379f0a0d106e65164c615818927267c2082ebcb4). Commands were checked against the release source on October 19, 2026; provider integrations were not run. Use `rig <command> --help` to check your installed version.
+Targets **OpenRig 0.6.14**, release commit [`df1c1517`](https://github.com/mvschwarz/openrig/tree/df1c1517f03a403fb468523be1c563d489209a1d). Commands were checked against the release source on October 23, 2026; provider integrations were not run. Use `rig <command> --help` to check your installed version.
+
+## Changes since 0.6.11
+
+- Added per-seat effort, working-folder and permission-policy settings.
+- Added missing-pane repair, draft-aware input protection and held-message inspection.
+- Added managed Claude compaction, cost reporting, launch environment and delivery-verification examples.
+- Updated restore behavior, observed models, history wake, compact queue reads and Slack recovery notes.
+- Rig names with dots are now rejected by the example editor.
+
+Upgrading from 0.6.11 applies the twelve migrations from 0.6.12 and migration 117 from 0.6.13 on first daemon start; 0.6.14 adds none. Restart the daemon and reopen any TUI. The bundled core plugin is 0.1.15; Claude hooks require Claude Code 2.1.280 or later.
 
 ## Everyday workflows
 
@@ -26,11 +36,15 @@ Available workflows:
 | Restart Codex | Restart one seat on the same conversation, **Linux only**. |
 | Reload YAML | Apply an edited team configuration. |
 | Change model | Save a model selection for the next managed launch. |
-| Upgrade | Install 0.6.11, restart the daemon and resume the team. |
+| Repair pane | Repair a missing managed pane binding after upgrading. |
+| Tune effort | Save and inspect per-seat reasoning effort. |
+| Move seat | Change a working folder and adopt it with a rebuild handover. |
+| Compact Claude | Run managed compaction and verify the result. |
+| Upgrade | Install 0.6.14, restart the daemon and resume the team. |
 
-`rig ask` searches retained history. `rig ask --wake` executes a one-shot agent and uses runtime quota; check its account of the past against current source documents. The video is a conceptual guide; command syntax remains checked against 0.6.11.
+`rig ask` searches retained history. `rig ask --wake` executes a one-shot agent and uses runtime quota; check its account of the past against current source documents. The video is a conceptual guide; command syntax remains checked against 0.6.14.
 
-The command browser has 178 examples in 14 categories, with search, operation filters, copy buttons and source links. Commands are copied as text; the page does not execute them.
+There are 19 workflows. The command browser has 198 examples in 14 categories, with search, operation filters, copy buttons and source links. Commands are copied as text; the page does not execute them.
 
 ## Quick commands
 
@@ -67,9 +81,10 @@ GitHub Pages serves `main` from `/ (root)`. Keep `.nojekyll`; pushes publish aut
 
 ## Upstream references
 
-- [OpenRig 0.6.11 release](https://github.com/mvschwarz/openrig/releases/tag/v0.6.11)
-- [CLI source at the release commit](https://github.com/mvschwarz/openrig/tree/379f0a0d106e65164c615818927267c2082ebcb4/packages/cli/src/commands)
-- [Getting started](https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/getting-started.md)
-- [Rig specification](https://github.com/mvschwarz/openrig/blob/379f0a0d106e65164c615818927267c2082ebcb4/docs/reference/rig-spec.md)
+- [OpenRig 0.6.14 release](https://github.com/mvschwarz/openrig/releases/tag/v0.6.14)
+- [CLI source at the release commit](https://github.com/mvschwarz/openrig/tree/df1c1517f03a403fb468523be1c563d489209a1d/packages/cli/src/commands)
+- [Human quickstart](https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/docs/reference/quickstart.md)
+- [Getting started](https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/docs/reference/getting-started.md)
+- [Rig specification](https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/docs/reference/rig-spec.md)
 
 The [Workshop listing](https://openrig.dev/rigs/workshop) supplies the current pinned team source and runtime choices. It declares broad access and non-interruptive launches; inspect the declared behavior before installing.
