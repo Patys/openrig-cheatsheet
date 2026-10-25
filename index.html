@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>OpenRig Cheatsheet</title>
-<meta name="description" content="A practical OpenRig CLI reference. 198 examples, 14 categories and nineteen common workflows. Verified against OpenRig 0.6.14.">
+<meta name="description" content="A practical OpenRig CLI reference. 219 examples, 14 categories and 23 common workflows. Verified against OpenRig 0.7.1.">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%231b2421'/%3E%3Cpath d='M8 10l6 6-6 6m10 0h7' fill='none' stroke='white' stroke-width='2.5'/%3E%3C/svg%3E">
 <script>
@@ -29,10 +29,10 @@
 </style>
 </head>
 <body>
-<header class="topbar"><div class="wrap topnav"><a class="wordmark" href="#">OpenRig</a><span class="version">v0.6.14</span><nav class="navlinks" aria-label="Page navigation"><a href="#start">Start here</a><a href="#workflows">Workflows</a><a href="#commands">Commands</a><a href="#sources">Sources</a><button class="button" id="download">Download HTML</button><button class="button theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false"><svg class="moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg><svg class="sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span class="theme-label" id="theme-label">Dark mode</span></button></nav></div></header>
+<header class="topbar"><div class="wrap topnav"><a class="wordmark" href="#">OpenRig</a><span class="version">v0.7.1</span><nav class="navlinks" aria-label="Page navigation"><a href="#start">Start here</a><a href="#workflows">Workflows</a><a href="#commands">Commands</a><a href="#sources">Sources</a><button class="button" id="download">Download HTML</button><button class="button theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false"><svg class="moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg><svg class="sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span class="theme-label" id="theme-label">Dark mode</span></button></nav></div></header>
 <main>
 <div class="wrap">
-<section class="intro"><h1>OpenRig cheatsheet</h1><p>Understand the team, choose a workflow and copy the commands you need.</p><div class="meta">198 examples · 14 categories · Verified against 0.6.14 / df1c1517</div></section>
+<section class="intro"><h1>OpenRig cheatsheet</h1><p>Understand the team, choose a workflow and copy the commands you need.</p><div class="meta">219 examples · 14 categories · Verified against 0.7.1 / 1e392d56</div></section>
 <section class="basics" id="start" aria-labelledby="start-title">
 <h2 id="start-title">Work through one lead</h2>
 <p>Give the lead a concrete outcome, constraints and a way to check success. It coordinates specialists and review; you follow the task and result.</p>
@@ -41,7 +41,7 @@
 <div><dt>Context &amp; skills</dt><dd>Context explains the project and where existing systems live. A router helps find it; a skill gives the procedure for a specific situation.</dd></div>
 <div><dt>Spec &amp; bundle</dt><dd>A RigSpec is the YAML blueprint. A bundle packages the team and its declared resources so another machine can install them.</dd></div>
 </dl>
-<details class="guide"><summary>What changed in 0.6.12–0.6.14</summary><div class="guide-body"><h3>Recovery and upgrades</h3><p>Restart the daemon and reopen the TUI after upgrading. Coming from 0.6.11 applies database migrations on first start. A missing managed pane can now be repaired in place; see Repair pane below. A deliberately stopped seat stays stopped on restore.</p><h3>Seat settings and delivery</h3><p>Save reasoning effort, working folder and permission policy per seat. Draft-aware protection holds manual input. Status shows configured and observed models; usage cost distinguishes estimates from missing cost data. Rig names with dots are refused.</p><h3>Compaction and history</h3><p>Manual Claude compaction waits through ordinary approvals within its deadline. Confirm it ran and check current work after refocus. History wake supports Claude and Codex; unsupported runtimes are refused.</p></div></details>
+<details class="guide"><summary>What changed in 0.7.0–0.7.1</summary><div class="guide-body"><h3>Upgrade and environment</h3><p>Restart the daemon and reopen the TUI. From 0.6.14, the two releases apply six then eight database updates. Managed plugin and skill files are replaced, with backups under $OPENRIG_HOME/backups/managed-refresh/. New agents use a clean environment; configure seat env or rig up --env instead of tmux global variables.</p><h3>Input, skills and asks</h3><p>Choose automatic input levels and peer intervention policies per seat. Team skills live outside the project. Quiet hours hold routine asks; every ask reaches the TUI Feed, with optional urgent-only Slack delivery. seat status explains the next fresh launch’s permissions.</p><h3>Changed behavior</h3><p>Stopping your own rig now asks for confirmation; use --yes explicitly in scripts. Start the daemon before up --plan. ps --nodes adds ATTN: use JSON in scripts. slack verify no longer accepts --actor or --reason. provider switch is not wired in this release; provider moves only reads reports. Managed compaction survives daemon restarts.</p><h3>Recovery limits</h3><p>On macOS, inspect a restored Claude seat’s terminal before acting on attention status. A new Claude seat may need Enter to submit startup text. A resumed Codex seat can be misrecognized after its header scrolls away. A failed restart proof can follow a successful restart when CODEX_HOME is set: inspect the pane and native /status before retrying.</p></div></details>
 <details class="guide"><summary>Choose a command and keep agents oriented</summary><div class="guide-body">
 <div class="guide-table"><table><caption>Choose by the outcome you need</caption><thead><tr><th scope="col">Need</th><th scope="col">Use</th><th scope="col">What it gives you</th></tr></thead><tbody>
 <tr><td>Talk to a live agent</td><td><code>rig send</code></td><td>Input to its terminal. Follow the reply; delivery is not completion.</td></tr>
@@ -65,7 +65,7 @@
 <aside class="sidebar"><p class="sidebar-label">Categories</p><nav id="categories" class="category-nav" aria-label="Command categories"></nav><div class="sidebar-note"><p><code>--existing</code> reads saved rig state, not edited YAML.</p><p>Restarting the daemon does not restart surviving agents.</p><p><code>send</code> delivers input. <code>queue</code> records work.</p></div></aside>
 <div class="command-pane"><div class="toolbar"><div class="search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="10.7" cy="10.7" r="6.7"/><path d="m16 16 4.5 4.5"/></svg><input id="search" type="search" placeholder="Search commands…" aria-label="Search commands"><button id="clear" class="clear" aria-label="Clear search" hidden>×</button><kbd aria-label="Press slash to search">/</kbd></div><div class="filters" role="group" aria-label="Operation type"><button class="filter active" data-filter="all" aria-pressed="true">All</button><button class="filter" data-filter="read" aria-pressed="false">Read / plan</button><button class="filter" data-filter="change" aria-pressed="false">Change</button><button class="filter" data-filter="stop" aria-pressed="false">Stop</button><button class="filter" data-filter="delete" aria-pressed="false">Delete</button><button class="filter" data-filter="seat" aria-pressed="false">Agent terminal</button><span class="results" id="results" aria-live="polite"></span></div></div><div id="command-list" tabindex="0" role="region" aria-label="Scrollable command examples"></div><noscript><p class="noscript">Enable JavaScript to view and search the command reference.</p></noscript></div>
 </section></div></section>
-<section class="sources" id="sources"><div class="wrap source-grid"><div><h2>Version & sources</h2><p>Commands checked against OpenRig <strong>0.6.14 / df1c1517</strong> source. Use <code>rig &lt;command&gt; --help</code> for your installed version. Provider integrations were not run.</p><p>Replace variables with values from CLI output: <code>$RIG_ID</code> is a rig ID; <code>$SEAT_ID</code> is a logical seat ID such as dev.owner; <code>$QITEM_ID</code> and <code>$SNAPSHOT_ID</code> identify saved records. Set <code>$BUNDLE_SOURCE</code> to a real bundle path or GitHub folder URL and <code>$ACCOUNT_REF</code> from provider status. Choose rig and seat names that match your team; model availability depends on the harness and account.</p></div><div class="source-links"><a href="https://www.youtube.com/watch?v=CYRJDTcTKhQ" target="_blank" rel="noopener">Video: teams &amp; context</a><a href="https://openrig.dev/rigs/workshop" target="_blank" rel="noopener">Workshop listing</a><a href="https://github.com/mvschwarz/openrig/releases/tag/v0.6.14" target="_blank" rel="noopener">0.6.14 release notes</a><a href="https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/docs/as-built/cli-reference.md" target="_blank" rel="noopener">CLI reference</a><a href="https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/docs/reference/quickstart.md" target="_blank" rel="noopener">Human quickstart</a><a href="https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/docs/reference/getting-started.md" target="_blank" rel="noopener">Getting started</a><a href="https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/docs/reference/rig-spec.md" target="_blank" rel="noopener">RigSpec</a><a href="https://github.com/mvschwarz/openrig/tree/df1c1517f03a403fb468523be1c563d489209a1d/packages/cli/src/commands" target="_blank" rel="noopener">CLI source</a><a href="https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/docs/reference/agent-spec.md" target="_blank" rel="noopener">AgentSpec</a><a href="https://learn.chatgpt.com/docs/auth" target="_blank" rel="noopener">Codex authentication</a><a href="https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/docs/reference/instance-layout.md" target="_blank" rel="noopener">Instance layout</a></div></div></section>
+<section class="sources" id="sources"><div class="wrap source-grid"><div><h2>Version & sources</h2><p>Commands checked against OpenRig <strong>0.7.1 / 1e392d56</strong> source. Use <code>rig &lt;command&gt; --help</code> for your installed version. Provider integrations were not run.</p><p>Replace variables with values from CLI output: <code>$RIG_ID</code> is a rig ID; <code>$SEAT_ID</code> is a logical seat ID such as dev.owner; <code>$QITEM_ID</code> and <code>$SNAPSHOT_ID</code> identify saved records. Set <code>$BUNDLE_SOURCE</code> to a real bundle path or GitHub folder URL and <code>$ACCOUNT_REF</code> from provider status. Choose rig and seat names that match your team; model availability depends on the harness and account.</p></div><div class="source-links"><a href="https://www.youtube.com/watch?v=CYRJDTcTKhQ" target="_blank" rel="noopener">Video: teams &amp; context</a><a href="https://openrig.dev/rigs/workshop" target="_blank" rel="noopener">Workshop listing</a><a href="https://github.com/mvschwarz/openrig/releases/tag/v0.7.1" target="_blank" rel="noopener">0.7.1 release notes</a><a href="https://github.com/mvschwarz/openrig/blob/1e392d56c31a23652da3ba78fade1acb077dea86/docs/as-built/cli-reference.md" target="_blank" rel="noopener">CLI reference</a><a href="https://github.com/mvschwarz/openrig/blob/1e392d56c31a23652da3ba78fade1acb077dea86/docs/reference/quickstart.md" target="_blank" rel="noopener">Human quickstart</a><a href="https://github.com/mvschwarz/openrig/blob/1e392d56c31a23652da3ba78fade1acb077dea86/docs/reference/getting-started.md" target="_blank" rel="noopener">Getting started</a><a href="https://github.com/mvschwarz/openrig/blob/1e392d56c31a23652da3ba78fade1acb077dea86/docs/reference/rig-spec.md" target="_blank" rel="noopener">RigSpec</a><a href="https://github.com/mvschwarz/openrig/tree/1e392d56c31a23652da3ba78fade1acb077dea86/packages/cli/src/commands" target="_blank" rel="noopener">CLI source</a><a href="https://github.com/mvschwarz/openrig/blob/1e392d56c31a23652da3ba78fade1acb077dea86/docs/reference/agent-spec.md" target="_blank" rel="noopener">AgentSpec</a><a href="https://learn.chatgpt.com/docs/auth" target="_blank" rel="noopener">Codex authentication</a><a href="https://github.com/mvschwarz/openrig/blob/1e392d56c31a23652da3ba78fade1acb077dea86/docs/reference/instance-layout.md" target="_blank" rel="noopener">Instance layout</a></div></div></section>
 </main>
 <footer class="footer"><div class="wrap"><span>OpenRig Cheatsheet · Unofficial reference</span><span>Verified October 23, 2026 · Works offline</span></div></footer>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -163,7 +163,7 @@
       "title": "Check the CLI version",
       "cmd": "rig --version",
       "desc": "Show the installed version and commit.",
-      "note": "This reference targets OpenRig 0.6.14 · df1c1517.",
+      "note": "This reference targets OpenRig 0.7.1 · 1e392d56.",
       "type": "read",
       "scope": "operator",
       "src": "setup"
@@ -233,7 +233,7 @@
       "title": "Plan the starter",
       "cmd": "rig up starter --cwd . --plan",
       "desc": "Run resolution and preflight checks in the current repository.",
-      "note": "Plan mode does not launch agents. Inspect the two selected runtimes, models and permissions first.",
+      "note": "Plan mode does not launch agents. Inspect the two selected runtimes, models and permissions first. Start the daemon first: --plan returns daemon_not_running when it is stopped.",
       "type": "read",
       "scope": "operator",
       "src": "up"
@@ -241,7 +241,7 @@
     {
       "cat": "start",
       "title": "Install the reference release",
-      "cmd": "npm install -g @openrig/cli@0.6.14",
+      "cmd": "npm install -g @openrig/cli@0.7.1",
       "desc": "Install the exact version used by this cheatsheet.",
       "note": "Restart the daemon after upgrading. Follow the Upgrade workflow; Node >=22 is required, and the release guidance recommends Node 22 on macOS ARM64.",
       "type": "change",
@@ -281,13 +281,13 @@
     {
       "cat": "start",
       "title": "Install the agent-guided setup skill",
-      "cmd": "npx skills add https://github.com/mvschwarz/openrig/tree/v0.6.14/skills/rigs --skill rigs --agent codex",
+      "cmd": "npx skills add https://github.com/mvschwarz/openrig/tree/v0.7.1/skills/rigs --skill rigs --agent codex",
       "desc": "Add the rigs skill so your existing agent can guide setup.",
       "note": "Run in your project. Invoke $rigs in Codex; for Claude Code select --agent claude-code and invoke /rigs. Give the agent your project, goal and chosen team page.",
       "type": "change",
       "scope": "operator",
       "src": "external",
-      "sourceURL": "https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/skills/rigs/SKILL.md"
+      "sourceURL": "https://github.com/mvschwarz/openrig/blob/1e392d56c31a23652da3ba78fade1acb077dea86/skills/rigs/SKILL.md"
     },
     {
       "cat": "daemon",
@@ -384,7 +384,7 @@
       "title": "Plan a YAML launch",
       "cmd": "rig up {{spec}} --cwd . --plan",
       "desc": "Check your team spec before launch.",
-      "note": "Since 0.6.6, eligible project seats without an explicit policy receive a team permission default, not only the old floor. Inspect the plan and seat status. An explicit permission_policy: none retains the floor.",
+      "note": "Since 0.6.6, eligible project seats without an explicit policy receive a team permission default, not only the old floor. Inspect the plan and seat status. An explicit permission_policy: none retains the floor. Start the daemon first: --plan returns daemon_not_running when it is stopped.",
       "type": "read",
       "scope": "operator",
       "src": "up"
@@ -444,11 +444,11 @@
       "title": "Stop the team (automatic snapshot)",
       "cmd": "rig down {{rig}}",
       "desc": "Capture recovery state, then stop the team's live sessions.",
-      "note": "An auto-pre-down snapshot is attempted even without --snapshot; the flag is redundant. Metadata-refresh failure no longer prevents snapshot capture. Snapshot failure is warned and teardown still proceeds. An already stopped rig gets no new snapshot. This is not a Git backup.",
+      "note": "An auto-pre-down snapshot is attempted even without --snapshot; the flag is redundant. Metadata-refresh failure no longer prevents snapshot capture. Snapshot failure is warned and teardown still proceeds. An already stopped rig gets no new snapshot. This is not a Git backup. When stopping the rig you are inside, confirm interactively or pass --yes explicitly; without a terminal it stops nothing.",
       "type": "stop",
       "scope": "operator",
       "src": "down",
-      "sourceURL": "https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/packages/daemon/src/domain/rig-teardown.ts"
+      "sourceURL": "https://github.com/mvschwarz/openrig/blob/1e392d56c31a23652da3ba78fade1acb077dea86/packages/daemon/src/domain/rig-teardown.ts"
     },
     {
       "cat": "teams",
@@ -1302,30 +1302,30 @@
     },
     {
       "cat": "recover",
-      "title": "Plan a Codex restart (Linux)",
+      "title": "Plan a Codex restart",
       "cmd": "rig seat restart {{seat}} --keep-conversation --plan --json",
       "desc": "Check an in-place restart on the same conversation.",
-      "note": "Linux only in 0.6.14. Requires a managed Codex seat in a single pane, verified conversation and unchanged running settings. Review activity and child processes.",
+      "note": "Requires a managed Codex seat in a single pane, verified conversation and unchanged running settings. Review activity and child processes. With CODEX_HOME set, a failed resume proof can follow an actual successful restart. Inspect the pane and native /status before retrying.",
       "type": "read",
       "scope": "operator",
       "src": "seat"
     },
     {
       "cat": "recover",
-      "title": "Restart Codex on the same conversation (Linux)",
+      "title": "Restart Codex on the same conversation",
       "cmd": "rig seat restart {{seat}} --keep-conversation --reason 'Restart after account update' --json",
       "desc": "Restart one Codex seat in its existing pane.",
-      "note": "Linux only. Run after reviewing --plan. Reads the account already held by the Codex home; it does not switch accounts. restarted_account_unverified still needs account verification.",
+      "note": "Run after reviewing --plan. Reads the account already held by the Codex home; it does not switch accounts. restarted_account_unverified still needs account verification. With CODEX_HOME set, a failed resume proof can follow an actual successful restart. Inspect the pane and native /status before retrying.",
       "type": "stop",
       "scope": "operator",
       "src": "seat"
     },
     {
       "cat": "recover",
-      "title": "Verify a restarted Codex seat (Linux)",
+      "title": "Verify a restarted Codex seat",
       "cmd": "rig seat restart {{seat}} --keep-conversation --verify --expect-account \"$ACCOUNT_LABEL\" --json",
       "desc": "Check the resumed conversation and expected account.",
-      "note": "Run after a completed tool turn. Set ACCOUNT_LABEL to the expected Codex /status Account line, not a provider account ref. Only verified turn and account evidence produce moved.",
+      "note": "Run after a completed tool turn. Set ACCOUNT_LABEL to the expected Codex /status Account line, not a provider account ref. Only verified turn and account evidence produce moved. With CODEX_HOME set, a failed resume proof can follow an actual successful restart. Inspect the pane and native /status before retrying.",
       "type": "read",
       "scope": "operator",
       "src": "seat"
@@ -1333,9 +1333,9 @@
     {
       "cat": "skills",
       "title": "Inspect the Codex skill loadout",
-      "cmd": "rig skill loadout --runtime codex --cwd . --json",
-      "desc": "Read managed skills selected for the working directory.",
-      "note": "A selected skill with uncommitted catalog content is skipped and exits 1; remaining clean skills can still project. uses.skills: [] does not disable runtime-native discovery of repository skills.",
+      "cmd": "rig skill loadout --seat {{seat}} --json",
+      "desc": "Read this seat’s own managed skills outside the project.",
+      "note": "Team skills now live in seat storage, not the project .claude/skills or .agents/skills. Claude needs 2.1.280+. Folder mode --runtime codex --cwd . remains available for explicit project loadouts.",
       "type": "read",
       "scope": "operator",
       "src": "skill"
@@ -1343,9 +1343,9 @@
     {
       "cat": "skills",
       "title": "Apply the skill loadout",
-      "cmd": "rig skill loadout --runtime codex --cwd . --apply",
-      "desc": "Reconcile selected skills into runtime directories.",
-      "note": "Inspect first. --apply can change clean skill projections even when a skipped skill makes the command exit 1. Existing projected copies of skipped skills remain as they were.",
+      "cmd": "rig skill loadout --seat {{seat}} --apply --json",
+      "desc": "Reconcile this seat’s own skills outside the project.",
+      "note": "Team skills now live in seat storage, not the project .claude/skills or .agents/skills. Claude needs 2.1.280+. Folder mode --runtime codex --cwd . remains available for explicit project loadouts.",
       "type": "change",
       "scope": "operator",
       "src": "skill"
@@ -1385,7 +1385,7 @@
       "title": "Inspect OpenRig core",
       "cmd": "rig plugin show openrig-core",
       "desc": "Read the plugin manifest, skills, hooks and MCP servers.",
-      "note": "Bundled openrig-core is 0.1.15. Claude hooks need Claude Code 2.1.280 or later. Existing agents pick up hook changes at their next managed launch, restore or handover; a daemon restart alone does not reload their hooks.",
+      "note": "Bundled openrig-core is 0.1.18. Claude hooks need Claude Code 2.1.280 or later. Existing agents pick up hook changes at their next managed launch, restore or handover; a daemon restart alone does not reload their hooks.",
       "type": "read",
       "scope": "operator",
       "src": "plugin"
@@ -1625,17 +1625,17 @@
       "title": "Precheck an account switch",
       "cmd": "rig provider precheck --seat {{seat}} --to-account \"$ACCOUNT_REF\" --json",
       "desc": "Check whether a switch to an existing account reference is safe.",
-      "note": "Get ACCOUNT_REF from provider accounts/status. UNSAFE exits 1. Resolve the reported reasons before attempting a switch.",
+      "note": "Get ACCOUNT_REF from provider accounts/status. UNSAFE exits 1. In 0.7.1 the execution path is not wired, even if precheck passes.",
       "type": "read",
       "scope": "operator",
       "src": "provider"
     },
     {
       "cat": "accounts",
-      "title": "Apply a prechecked account switch",
+      "title": "Provider switch is unavailable in 0.7.1",
       "cmd": "rig provider switch --seat {{seat}} --to-account \"$ACCOUNT_REF\" --json",
-      "desc": "Ask the daemon to orchestrate a guarded account switch.",
-      "note": "Configure the target account/profile first and resolve precheck findings. This is a lifecycle change; it does not reset quota.",
+      "desc": "The command exists, but account switching is not wired in 0.7.1.",
+      "note": "Do not use this to move accounts. Precheck can refuse an unknown target; even a passing precheck does not make execution available. The separate home-level auth switch and Codex restart flow is different.",
       "type": "change",
       "scope": "operator",
       "src": "provider"
@@ -1765,7 +1765,7 @@
       "title": "Read intake events",
       "cmd": "rig stream list --limit 50 --json",
       "desc": "Read the append-only intake stream.",
-      "note": "The stream and the owned-work queue are different surfaces.",
+      "note": "New items expire after 30 days or beyond the newest 20,000 unless referenced. Pre-upgrade history is kept. An expired --after cursor reports stream_cursor_expired. Bodies over 16 KiB are truncated and marked.",
       "type": "read",
       "scope": "operator",
       "src": "stream"
@@ -1863,7 +1863,7 @@
     {
       "cat": "advanced",
       "title": "Verify Slack scopes and channels",
-      "cmd": "rig slack verify --actor project-owner --json",
+      "cmd": "rig slack verify --json",
       "desc": "Check granted bot scopes and channel membership live.",
       "note": "Requires a configured Slack connector and its credentials. This does not verify every subscribed Slack event.",
       "type": "change",
@@ -2139,6 +2139,216 @@
       "type": "change",
       "scope": "operator",
       "src": "seat"
+    },
+    {
+      "cat": "models",
+      "title": "Allow OpenRig notices and urgent input",
+      "cmd": "rig seat set-typing-guard {{seat}} --mode openrig-urgent --reason 'Allow notices and urgent work'",
+      "desc": "Hold ordinary peer input while allowing OpenRig notices and urgent messages.",
+      "note": "Allowed input still cannot overwrite a draft. Wait for pending=false. Held messages never replay; lifecycle work is refused in this mode.",
+      "type": "change",
+      "scope": "operator",
+      "src": "seat"
+    },
+    {
+      "cat": "models",
+      "title": "Allow urgent input only",
+      "cmd": "rig seat set-typing-guard {{seat}} --mode urgent-only --reason 'Focus on current work'",
+      "desc": "Only urgent sends and urgent or critical queue wakes may type.",
+      "note": "Does not overwrite drafts. Held messages stay readable and never replay.",
+      "type": "change",
+      "scope": "operator",
+      "src": "seat"
+    },
+    {
+      "cat": "models",
+      "title": "Set peer intervention policy",
+      "cmd": "rig seat set-terminal-policy {{seat}} --preset no-peer-interventions --reason 'Keep peer interventions under operator control' --operator project-owner --json",
+      "desc": "Set the complete peer intervention choice for this seat.",
+      "note": "Other presets: help-within-instructions and full-control. Existing seats keep full-control. Managed compaction and model/effort changes are checked; other interventions are guidance-only. Native permissions and typing guard do not change.",
+      "type": "change",
+      "scope": "operator",
+      "src": "seat"
+    },
+    {
+      "cat": "tasks",
+      "title": "Send an urgent message",
+      "cmd": "rig send {{seat}} --urgent 'From the project owner. Check the failed deployment now.'",
+      "desc": "Mark deliberate input urgent, with attribution.",
+      "note": "Urgency does not bypass a draft or the hold guard.",
+      "type": "change",
+      "scope": "operator",
+      "src": "send"
+    },
+    {
+      "cat": "teams",
+      "title": "Launch a second named instance",
+      "cmd": "rig up {{spec}} --name {{rig}}-preview",
+      "desc": "Launch a new rig from the same YAML under another name.",
+      "note": "New launches only; this does not rename an existing rig. Not supported for topology files or GitHub bundle links.",
+      "type": "change",
+      "scope": "operator",
+      "src": "up"
+    },
+    {
+      "cat": "teams",
+      "title": "Preview a live edge change",
+      "cmd": "rig edge add {{rig}} dev.owner dev.backend --kind delegates_to --plan --json",
+      "desc": "Validate one relationship between existing logical seat IDs.",
+      "note": "Replace both IDs with values in your team. Planning writes nothing.",
+      "type": "read",
+      "scope": "operator",
+      "src": "edge"
+    },
+    {
+      "cat": "teams",
+      "title": "Add a live edge",
+      "cmd": "rig edge add {{rig}} dev.owner dev.backend --kind delegates_to --json",
+      "desc": "Add one relationship without restarting the rig.",
+      "note": "An existing identical edge is unchanged. Record the returned edge ID.",
+      "type": "change",
+      "scope": "operator",
+      "src": "edge"
+    },
+    {
+      "cat": "teams",
+      "title": "Remove a live edge",
+      "cmd": "rig edge remove {{rig}} \"$EDGE_ID\" --json",
+      "desc": "Remove exactly one relationship by its returned ID.",
+      "note": "Use --plan first to preview removal.",
+      "type": "change",
+      "scope": "operator",
+      "src": "edge"
+    },
+    {
+      "cat": "advanced",
+      "title": "Set daily quiet hours",
+      "cmd": "rig gateway human quiet set \"$HUMAN_ID\" --daily 22:00-07:00 --tz Europe/Warsaw --actor project-owner --json",
+      "desc": "Hold routine asks overnight; escalations still reach the person.",
+      "note": "Each held ask posts once when quiet ends.",
+      "type": "change",
+      "scope": "operator",
+      "src": "gateway"
+    },
+    {
+      "cat": "advanced",
+      "title": "Read quiet hours",
+      "cmd": "rig gateway human quiet show \"$HUMAN_ID\" --json",
+      "desc": "Read the saved quiet rule and current status.",
+      "note": "",
+      "type": "read",
+      "scope": "operator",
+      "src": "gateway"
+    },
+    {
+      "cat": "advanced",
+      "title": "End the current quiet window",
+      "cmd": "rig gateway human quiet end \"$HUMAN_ID\" --actor project-owner --json",
+      "desc": "End this quiet window while keeping the daily rule.",
+      "note": "Use quiet clear to remove the saved rule.",
+      "type": "change",
+      "scope": "operator",
+      "src": "gateway"
+    },
+    {
+      "cat": "advanced",
+      "title": "Save a focus mode",
+      "cmd": "rig gateway human mode save \"$HUMAN_ID\" focus --availability focus --quiet until-end --tz Europe/Warsaw --actor project-owner --json",
+      "desc": "Save a mode without delegating decisions.",
+      "note": "A saved mode takes effect only after mode apply.",
+      "type": "change",
+      "scope": "operator",
+      "src": "gateway"
+    },
+    {
+      "cat": "advanced",
+      "title": "Apply a saved focus mode",
+      "cmd": "rig gateway human mode apply \"$HUMAN_ID\" focus --until 17:00 --tz Europe/Warsaw --actor project-owner --json",
+      "desc": "Apply a saved mode until the next local 17:00.",
+      "note": "Check mode current; mode end ends it early.",
+      "type": "change",
+      "scope": "operator",
+      "src": "gateway"
+    },
+    {
+      "cat": "advanced",
+      "title": "Read the current human mode",
+      "cmd": "rig gateway human mode current \"$HUMAN_ID\" --json",
+      "desc": "Read active mode, end time and what it changed.",
+      "note": "",
+      "type": "read",
+      "scope": "operator",
+      "src": "gateway"
+    },
+    {
+      "cat": "advanced",
+      "title": "Limit Slack to urgent asks",
+      "cmd": "rig gateway human set \"$HUMAN_ID\" slack-subscription urgent-only --actor project-owner",
+      "desc": "Keep ordinary asks in the TUI Feed and send alerted asks to Slack.",
+      "note": "Every ask goes to Slack by default. urgent-only selects asks marked --alert; unset removes the subscription choice. 0.7.0 cannot read person files holding this field.",
+      "type": "change",
+      "scope": "operator",
+      "src": "gateway"
+    },
+    {
+      "cat": "advanced",
+      "title": "Subscribe a seat to observations",
+      "cmd": "rig stream subscribe {{seat}} --actor project-owner --json",
+      "desc": "Create a bounded stream reader for the seat.",
+      "note": "Default tags match the reader’s own IDs. Subscription does not create owned queue work.",
+      "type": "change",
+      "scope": "operator",
+      "src": "stream"
+    },
+    {
+      "cat": "advanced",
+      "title": "Read a page for a stream reader",
+      "cmd": "rig stream read --reader {{seat}} --limit 20 --json",
+      "desc": "Read at most 20 observations intended for this reader.",
+      "note": "",
+      "type": "read",
+      "scope": "operator",
+      "src": "stream"
+    },
+    {
+      "cat": "advanced",
+      "title": "Inspect one stream observation",
+      "cmd": "rig stream show \"$STREAM_ITEM_ID\" --json",
+      "desc": "Read an observation and what became of it.",
+      "note": "",
+      "type": "read",
+      "scope": "operator",
+      "src": "stream"
+    },
+    {
+      "cat": "advanced",
+      "title": "Retune an active watchdog",
+      "cmd": "rig watchdog update \"$JOB_ID\" --interval-seconds 300 --json",
+      "desc": "Change its interval while keeping the job ID and history.",
+      "note": "Stopped or finished jobs are refused. Policy, target and registering agent cannot be changed here.",
+      "type": "change",
+      "scope": "operator",
+      "src": "watchdog"
+    },
+    {
+      "cat": "advanced",
+      "title": "Serve MCP over local HTTP",
+      "cmd": "rig mcp serve --http --bind 127.0.0.1:7437",
+      "desc": "Serve Streamable HTTP at /mcp.",
+      "note": "Before a tunnel, proxy or remote listener, create a grant with rig mcp token add. Each grant acts as its own seat. TLS comes from the tunnel or proxy.",
+      "type": "change",
+      "scope": "operator",
+      "src": "mcp"
+    },
+    {
+      "cat": "accounts",
+      "title": "Read subscription move reports",
+      "cmd": "rig provider moves --seat {{seat}} --json",
+      "desc": "Read recorded move outcomes; this switches no account.",
+      "note": "Removed in 0.7.0, restored in 0.7.1 as reports rather than switching controls.",
+      "type": "read",
+      "scope": "operator",
+      "src": "provider"
     }
   ]
 }
@@ -2178,7 +2388,7 @@ const quote=s=>/^[a-zA-Z0-9_./:@-]+$/.test(s)?s:"'"+s.replace(/'/g,"'\\''")+"'";
 function command(t){const map={rig:values.rig,seat:values.seat+"@"+values.rig,owner:values.seat+"@"+values.rig,backend:"dev-backend@"+values.rig,frontend:"dev-frontend@"+values.rig,checker:"dev-check@"+values.rig,spec:quote(values.spec),model:values.model};return t.replace(/\{\{(\w+)\}\}/g,(_,k)=>map[k]??_);}
 const names={read:"Read / plan",change:"Change",stop:"Stop",delete:"Delete"};
 function copyButton(id){return '<button class="copy" data-copy="'+id+'" aria-label="Copy command">Copy</button>';}
-function source(e){if(e.sourceURL)return e.sourceURL;if(e.src==="release")return "https://github.com/mvschwarz/openrig/releases/tag/v0.6.14";return e.src==="external"?"https://learn.chatgpt.com/docs/auth":"https://github.com/mvschwarz/openrig/blob/df1c1517f03a403fb468523be1c563d489209a1d/packages/cli/src/commands/"+e.src+".ts";}
+function source(e){if(e.sourceURL)return e.sourceURL;if(e.src==="release")return "https://github.com/mvschwarz/openrig/releases/tag/v0.7.1";return e.src==="external"?"https://learn.chatgpt.com/docs/auth":"https://github.com/mvschwarz/openrig/blob/1e392d56c31a23652da3ba78fade1acb077dea86/packages/cli/src/commands/"+e.src+".ts";}
 function normalize(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
 function renderCategories(){let html='<button class="category '+(state.category==="all"?"active":"")+'" data-cat="all" aria-pressed="'+(state.category==="all")+'">All commands<span class="count">'+entries.length+'</span></button>';for(const cat of categories){html+='<button class="category '+(state.category===cat.id?"active":"")+'" data-cat="'+cat.id+'" aria-pressed="'+(state.category===cat.id)+'">'+escapeHTML(cat.name)+'<span class="count">'+entries.filter(e=>e.cat===cat.id).length+'</span></button>';}$("#categories").innerHTML=html;}
 function visible(e){if(state.category!=="all"&&e.cat!==state.category)return false;if(state.filter==="seat"){if(e.scope!=="seat")return false;}else if(state.filter!=="all"&&e.type!==state.filter)return false;const text=normalize([e.title,e.desc,e.note,command(e.cmd),categories.find(c=>c.id===e.cat).name].join(" "));return normalize(state.query).trim().split(/\s+/).every(word=>text.includes(word));}
@@ -2193,7 +2403,7 @@ const workflows=[
       "Invoke $rigs in Codex or /rigs in Claude Code. Give it the repository, outcome and team page.",
       "Let the agent check the installation and open the operator; confirm which team to launch."
     ],
-    "code": "npx skills add https://github.com/mvschwarz/openrig/tree/v0.6.14/skills/rigs --skill rigs --agent codex\n\n# In your Codex chat, invoke $rigs and give it your project and outcome.\n# For Claude Code, install with --agent claude-code and invoke /rigs.\n\n# To return to an existing installation:\nrig daemon status\nrig ps -A\nrig terminal open saved:kernel --window",
+    "code": "npx skills add https://github.com/mvschwarz/openrig/tree/v0.7.1/skills/rigs --skill rigs --agent codex\n\n# In your Codex chat, invoke $rigs and give it your project and outcome.\n# For Claude Code, install with --agent claude-code and invoke /rigs.\n\n# To return to an existing installation:\nrig daemon status\nrig ps -A\nrig terminal open saved:kernel --window",
     "note": "The skill is an instruction entry point, not a launched team. For a new installation it handles prerequisites and the handoff. Reuse a team already working in your repository. Workshop is an external four-seat bundle; the operator can inspect its listing and adapt provider choices."
   },
   {
@@ -2319,15 +2529,15 @@ const workflows=[
   },
   {
     "label": "Restart Codex",
-    "title": "Restart one Codex seat in place (Linux)",
+    "title": "Restart one Codex seat in place",
     "desc": "Keep its conversation and running settings after an account update.",
     "steps": [
-      "Linux only: inspect the plan, activity and other users of the Codex home.",
+      "inspect the plan, activity and other users of the Codex home.",
       "Restart only after work is saved and the intended login is already in that home.",
       "After a completed tool turn, verify the expected account."
     ],
     "code": "rig seat restart {{seat}} --keep-conversation --plan --json\n\n# After reviewing the plan; this does not switch accounts:\nrig seat restart {{seat}} --keep-conversation \\\n  --reason 'Restart after account update' --json\n\n# After a completed tool turn; use the Codex /status Account label:\nrig seat restart {{seat}} --keep-conversation --verify \\\n  --expect-account \"$ACCOUNT_LABEL\" --json",
-    "note": "Unsupported on macOS in 0.6.14. A single managed pane, verified conversation and unchanged settings are required. restarted_account_unverified is not verified account evidence. If the result is uncertain, inspect status and --plan before retrying."
+    "note": "Inspect --plan before executing. A failed proof with CODEX_HOME set can follow an actual restart: read the pane and native /status before retrying. Resumed Codex seats can be misrecognized when the header scrolls off and the footer has a multi-word model name; inspect the terminal if up --existing stops. A restart does not switch accounts."
   },
   {
     "label": "Reload YAML",
@@ -2351,19 +2561,19 @@ const workflows=[
       "Save active work, stop and resume the team."
     ],
     "code": "rig seat set-model {{seat}} --model {{model}} --operator project-owner --reason 'Change model'\n\n# Record the same model in your source YAML.\n# Wait for agents to save work state.\nrig down {{rig}}\nrig up {{rig}} --existing\nrig ps --nodes --rig {{rig}} --full",
-    "note": "A daemon restart leaves surviving agents on their current model. The Linux keep-conversation restart refuses settings drift; use a managed launch to apply a model change."
+    "note": "A daemon restart leaves surviving agents on their current model. The keep-conversation restart refuses settings drift; use a managed launch to apply a model change."
   },
   {
     "label": "Upgrade",
-    "title": "Upgrade to OpenRig 0.6.14",
+    "title": "Upgrade to OpenRig 0.7.1",
     "desc": "Install the CLI, then restart the daemon to load the new build.",
     "steps": [
       "Ask agents to save work and wait for confirmation.",
-      "Close any open TUI, stop the team, install 0.6.14 and restart the daemon.",
+      "Close any open TUI, stop the team, install 0.7.1 and restart the daemon.",
       "Resume saved state and inspect every seat."
     ],
-    "code": "rig send --rig {{rig}} 'From the project owner. Record task status, results and the next step before the OpenRig upgrade.'\n\n# Wait for confirmation that state is saved.\nrig down {{rig}}\nnpm install -g @openrig/cli@0.6.14\nrig --version\nrig daemon stop\n\n# Keep your original instance/account environment.\n# Omit --no-kernel if you normally use the kernel.\nrig daemon start --no-kernel\nrig up {{rig}} --existing\nrig restore-check --rig {{rig}} --full --json\nrig ps --nodes --rig {{rig}} --full",
-    "note": "Keep your original instance/account environment and kernel choice. From 0.6.11, first start applies the twelve 0.6.12 migrations plus 117 from 0.6.13; 0.6.14 adds none. The core plugin is 0.1.15; Claude hooks need Claude Code 2.1.280+. Reopen the TUI. Inspect each seat; use the Repair pane workflow if sends are refused for a missing binding."
+    "code": "rig send --rig {{rig}} 'From the project owner. Record task status, results and the next step before the OpenRig upgrade.'\n\n# Wait for confirmation that state is saved.\nrig down {{rig}}\nnpm install -g @openrig/cli@0.7.1\nrig --version\nrig daemon stop\n\n# Keep your original instance/account environment.\n# Omit --no-kernel if you normally use the kernel.\nrig daemon start --no-kernel\nrig up {{rig}} --existing\nrig restore-check --rig {{rig}} --full --json\nrig ps --nodes --rig {{rig}} --full",
+    "note": "Keep the same instance environment and kernel choice. From 0.6.14: six database updates in 0.7.0 and eight more in 0.7.1 apply on first start. Core plugin 0.1.18 replaces managed files and backs them up under $OPENRIG_HOME/backups/managed-refresh/. Reapply deliberate customizations. New seats no longer inherit tmux global environment: use seat env or rig up --env. Claude needs 2.1.280+. Reopen the TUI and inspect every seat."
   },
   {
     "label": "Repair pane",
@@ -2411,7 +2621,55 @@ const workflows=[
       "Confirm the restore request or context drop and verify current work after refocus."
     ],
     "code": "rig compact {{seat}} --state --json\n\n# Only if no preparation is active, for a Claude seat:\nrig compact {{seat}} --json\nrig compact {{seat}} --state --json\nrig capture {{seat}} --lines 100\n\n# If a pending preparation needs to be stopped:\n# rig compact {{seat}} --cancel --json",
-    "note": "Claude only; the request can wait up to 240 seconds. submitted, unconfirmed means delivery, not proof that compaction ran. Refocus can miss current work, so re-read the task and source documents. Cancel an active preparation before retrying; cancellation cannot undo a submitted command."
+    "note": "Claude only; the request can wait up to 240 seconds. submitted, unconfirmed means delivery, not proof that compaction ran. Refocus can miss current work, so re-read the task and source documents. Cancel an active preparation before retrying; cancellation cannot undo a submitted command. Managed compaction now survives daemon restarts. If restoration remains owed, inspect --state and the saved restore map before any manual restore request; do not repeat /compact just because the request is delayed."
+  },
+  {
+    "label": "Control input",
+    "title": "Choose how much automatic input reaches a seat",
+    "desc": "Use a guard for input and a separate policy for peer interventions.",
+    "steps": [
+      "Inspect the seat and choose the input level.",
+      "Wait for pending=false before relying on it.",
+      "Inspect held messages; changing mode does not replay them."
+    ],
+    "code": "rig seat status {{seat}} --json\nrig seat set-typing-guard {{seat}} --mode openrig-urgent --reason 'Allow notices and urgent work'\nrig seat status {{seat}} --json\nrig seat held-messages {{seat}} --json\n\n# Optional, independent peer policy:\nrig seat set-terminal-policy {{seat}} --preset no-peer-interventions --reason 'Keep peer interventions under operator control' --operator project-owner --json",
+    "note": "off allows automatic input; draft-aware protects drafts; openrig-urgent allows OpenRig notices and urgent messages; urgent-only allows urgent messages; hold stops automatic input. sends-only allows deliberate sends but holds OpenRig notices. Terminal policy does not change native permissions or typing protection."
+  },
+  {
+    "label": "Quiet hours",
+    "title": "Keep routine asks for working hours",
+    "desc": "Let urgent asks through while routine questions wait.",
+    "steps": [
+      "List people and set HUMAN_ID to the intended registered entity ID.",
+      "Save quiet hours in an explicit timezone.",
+      "Read the rule and optionally reduce Slack to alerted asks."
+    ],
+    "code": "rig gateway human list --json\nrig gateway human quiet set \"$HUMAN_ID\" --daily 22:00-07:00 --tz Europe/Warsaw --actor project-owner --json\nrig gateway human quiet show \"$HUMAN_ID\" --json\n\n# Optional: ordinary asks stay in the TUI Feed.\nrig gateway human set \"$HUMAN_ID\" slack-subscription urgent-only --actor project-owner",
+    "note": "Every ask reaches the TUI Feed. Slack defaults to every ask; urgent-only selects --alert asks. Quiet mode holds routine asks and releases each once. Before downgrading to 0.7.0, save and unset Slack subscription choices; other subscriptions entries can still prevent that older version loading the registry."
+  },
+  {
+    "label": "Seat skills",
+    "title": "Inspect skills without adding them to your project",
+    "desc": "Read the seat loadout and apply changes when needed.",
+    "steps": [
+      "Inspect the seat’s managed skill list.",
+      "Apply the reconciled list when the seat can receive it.",
+      "Verify status and the delivered instructions."
+    ],
+    "code": "rig skill loadout --seat {{seat}} --json\nrig skill loadout --seat {{seat}} --apply --json\nrig seat status {{seat}} --json",
+    "note": "Team skills live in seat storage outside the repository. Claude needs 2.1.280+. Folder mode --runtime codex --cwd . is still available for explicit project loadouts. Reading a loadout alone does not deliver it."
+  },
+  {
+    "label": "Live edges",
+    "title": "Change one team relationship while it runs",
+    "desc": "Use logical IDs from your team and retain the returned edge ID.",
+    "steps": [
+      "Replace dev.owner and dev.backend with existing logical IDs.",
+      "Preview the edge, then apply it once.",
+      "Use the returned ID to preview and remove that exact edge if needed."
+    ],
+    "code": "rig edge add {{rig}} dev.owner dev.backend --kind delegates_to --plan --json\nrig edge add {{rig}} dev.owner dev.backend --kind delegates_to --json\n\n# Set EDGE_ID from the add result before removal.\nrig edge remove {{rig}} \"$EDGE_ID\" --plan --json\n# rig edge remove {{rig}} \"$EDGE_ID\" --json",
+    "note": "Adding an existing edge is a no-op. Seats and sessions do not change. Other kinds include collaborates_with, can_observe, spawned_by and escalates_to."
   }
 ];
 function renderWorkflow(){const w=workflows[state.workflow];$("#workflow-tabs").innerHTML=workflows.map((w,i)=>'<button class="tab '+(state.workflow===i?"active":"")+'" id="workflow-tab-'+i+'" data-workflow="'+i+'" role="tab" aria-selected="'+(state.workflow===i)+'" aria-controls="workflow-panel" tabindex="'+(state.workflow===i?0:-1)+'">'+escapeHTML(w.label)+'</button>').join("");$("#workflow-panel").setAttribute("aria-labelledby","workflow-tab-"+state.workflow);$("#workflow-panel").innerHTML='<div class="workflow-info"><h3>'+escapeHTML(w.title)+'</h3><p>'+escapeHTML(w.desc)+'</p><ol>'+w.steps.map(s=>'<li>'+escapeHTML(s)+'</li>').join("")+'</ol></div><div class="workflow-code"><div class="command"><pre>'+escapeHTML(command(w.code))+'</pre>'+copyButton("workflow")+'</div><p class="workflow-note">'+escapeHTML(w.note)+'</p></div>';}
@@ -2428,4 +2686,5 @@ $("#download").addEventListener("click",download);renderCategories();render();re
 </script>
 </body>
 </html>
+
 
